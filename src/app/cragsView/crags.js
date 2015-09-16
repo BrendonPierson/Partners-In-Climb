@@ -2,8 +2,8 @@
   'use strict';
   angular.module('myApp.crags', ['ui.router'])
     .controller('CragsCtrl', [
-      "$firebaseArray","currentAuth", "$scope", "Auth",
-     function($firebaseArray, currentAuth, $scope, Auth) {
+      "$firebaseArray","currentAuth", "$scope", "Auth", 'FoundationApi',
+     function($firebaseArray, currentAuth, $scope, Auth, foundationApi) {
 
       // auth is used by nav to display name or login
       $scope.auth = currentAuth;
@@ -39,9 +39,9 @@
           list.$add($scope.newCrag).then(function(ref) {
             var id = ref.key();
             console.log("added record with id " + id);
-            $scope.newCrag = {};// returns location in the array
+            $scope.newCrag = {};
+            foundationApi.publish('addClimbModal', 'close');
           });
-
         }
 
 
