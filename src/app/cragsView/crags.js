@@ -11,9 +11,14 @@
         $scope.userName = currentAuth.facebook.displayName;
       }
 
+      // DEBUG console.logs
       console.log(currentAuth);
-      
-      this.title = "HOME";
+
+      // Logout funciton
+      $scope.logout = function() {
+        Auth.$unauth();
+        console.log("logged out");
+      }
 
       var ref = new Firebase("https://bolt-it.firebaseio.com/areas");
       // download the data into a local object
@@ -27,10 +32,20 @@
           console.log("Error:", error);
         });
 
-        $scope.logout = function() {
-          Auth.$unauth();
-          console.log("logged out");
-          
+        $scope.newCrag = {};
+
+        $scope.addCrag = function(){
+          console.log("newCrag: ", $scope.newCrag);
+          list.$add($scope.newCrag).then(function(ref) {
+            var id = ref.key();
+            console.log("added record with id " + id);
+            list.$indexFor(id); // returns location in the array
+          });
+
         }
+
+
+
+
     }]);
 })();

@@ -55,5 +55,15 @@
           };
         })
 
+    // add a new area
+    $scope.climb = {};
+
+
+
+
+
+
+
+
     }]);
 })();

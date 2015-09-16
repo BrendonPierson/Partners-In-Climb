@@ -15,19 +15,19 @@
         <form>
           <label> 
             <h4>Crag Name</h4>
-            <input type="text" placeholder="Red River Gorge">
+            <input type="text" ng-model="newCrag.name" placeholder="Red River Gorge">
           </label>
           <div class="grid-block">
-            <div class="grid-content small-6">
+            <div class="grid-content medium-6">
               <label> 
                 <h4>City</h4>
-                <input type="text" placeholder="Slade">
+                <input type="text" ng-model="newCrag.city" placeholder="Slade">
               </label>
             </div>
-            <div class="grid-content small-6">
+            <div class="grid-content medium-6">
               <label> 
                 <h4>State</h4>
-                <select name="state">
+                <select ng-model="newCrag.state" name="state">
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
                   <option value="AZ">Arizona</option>
@@ -85,34 +85,25 @@
           </div>
           <label> 
             <h4>Description</h4>
-              <textarea name="description" rows="10" cols="50" placeholder="An abundance of steep well featured sandstone make this area a world class destination."></textarea>
+              <textarea ng-model="newCrag.description" name="description" rows="10" cols="50" placeholder="An abundance of steep well featured sandstone make this area a world class destination."></textarea>
           </label>
           <label>
             <h4>Image</h4>
-            <div class="grid-block">
-              <div class="grid-content small-6">
-                <span class="inline-label">
-                <span class="form-label">Url</span>
-                <input type="url" placeholder="http://google.com/images/kitten.jpg">
-                </span>
-              </div>
-              <div class="grid-content small-6">
-                <span class="inline-label">
-                <span class="form-label">Upload</span>
-                <input type="file" placeholder="/mycomputer/pictures/kitten.jpg">
-                </span>
-              </div>
-            </div>
+            <span class="inline-label">
+            <span class="form-label">URL</span>
+            <input type="url" ng-model="newCrag.image" placeholder="http://google.com/images/kitten.jpg">
+            </span>
           </label>
         </form>
       </div>
-      <div class="grid-content padding" style="padding-top: 1rem;">
-        <a zf-close="" class="button">Cancel</a>
+      <div class="grid-block align-right">
+        <a class="button" ng-click="addCrag()">Submit</a>
       </div>
     </div>
   </div>
 
-  <div class=" grid-block small-12">
+
+  <div class="grid-block small-12">
     <div class="grid-block show-for-medium medium-6">
       <!--BEGIN MOUNTAIN PROJECT WIDGET-->
       <iframe width="100%" height="1200px" frameborder="0" scrolling='auto' style='outline:1px solid #333;' src='http://www.mountainproject.com/widget?h=550&favs=1&loc=fixed&x=-9515349&y=4236631&z=6'></iframe>

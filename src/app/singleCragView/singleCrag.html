@@ -19,28 +19,28 @@
       </div>
     </div>
     <div class="grid-block small-12 medium-6 wrap main-content">
-      <div class="small-12 grid-block veritcal">
-        <div class="grid-content">
-          <h3>Name</h3>
-        </div>
-        <div class="grid-content">
-          <h3>Grade</h3>
-        </div>
-        <div class="grid-content">
-          <h3>Bolt Status</h3>
-        </div>
-      </div>
-      <div class="small-12 grid-block veritcal" ng-repeat="climb in climbs">
-        <div class="grid-content">
-          <p>{{ climb.name }}
-        </div>
-        <div class="grid-content">
-          <p>{{ climb.grade }}
-        </div>
-        <div class="grid-content">
-          <p>{{ climb.bolt_type }}
-        </div>
-      </div>
+      
+      <table wt-responsive-table>   
+        <tr>
+          <th>Name</th>
+          <th>Grade</th>
+          <th>Sector</th>
+          <th>Bolt Type</th>
+          <th>Last Bolted</th>
+          <th>Bolt Condition</th>
+          <th>Fixed Gear</th>
+        </tr>
+        <tr ng-repeat="climb in climbs">
+          <td>{{ climb.name }}</td>
+          <td>{{ climb.grade }}</td>
+          <td>{{ climb.sector }}</td>
+          <td>{{ climb.bolt_type }}</td>
+          <td>{{ climb.las_bolted }}</td>
+          <td>{{ climb.bolt_condition }}</td>
+          <td>{{ climb.fixed_gear }}</td>
+        </tr>
+      </table>
+
     </div>
   </div>
 </div>
