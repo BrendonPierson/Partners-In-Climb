@@ -16,10 +16,10 @@
 
 <!-- User info Panel -->
 <div zf-panel="" id="userInfo" position="right">
-  <a zf-close="" class="close-button">X</a>
+  <!-- <a zf-close="" class="close-button">X</a> -->
   <div class="grid-block align-center">
     <div class="grid-content">
-      <h4><a ui-sref="home">&#10094; Back</a></h4>
+      <h4><a zf-close="userInfo">&#10094; Back</a></h4>
       
       <hr />
 
@@ -57,3 +57,4 @@
   <a href="#" class="alert button" ng-click="logout()">Log Out</a>
 </div>
 
+<zf-notification-set autoclose="3000" id="main-notifications" position="top-left"></zf-notification-set>

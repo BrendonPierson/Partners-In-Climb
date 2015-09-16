@@ -97,6 +97,11 @@
     </div>
   </div>
 
+<!-- Specific Climb Details Panel -->
+<div zf-panel="" id="routeDetails" position="right">
+  <a zf-close="" class="close-button">×</a>
+  <p>{{ climbName }}</p>
+</div>
 
 <div class="grid-block">
   <div class="grid-block medium-3">
@@ -117,7 +122,7 @@
         <ul>
           <!-- With a label -->
           <li class="with-chevron" ng-repeat="climb in climbs | filter:climbSearch">
-            <a href="#">
+            <a href="#" zf-open="routeDetails" ng-click="setPanelDetails(climb)">
               <img src="http://placeimg.com/200/200/arch">
               <span class="left stars block-list-label">{{ climb.grade }}</span>
               <span class="left stars block-list-label">{{ climb.sector }}</span>

@@ -17,7 +17,7 @@
             // the access token will allow us to make Open Graph API calls
             console.log(authData);
             foundationApi.publish('main-notifications', { title: 'Success', content: 'You are now logged in.', autoclose: '3000' });
-            // $state.go("home");
+            $state.go("crags");
           }
         }, {
           scope: "email" // the permissions requested

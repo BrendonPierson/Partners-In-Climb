@@ -70,6 +70,19 @@
       });
     }
 
+    $scope.setPanelDetails = function(climb){
+      $scope.climbName = climb.name;
+      $scope.image_url = climb.image_url;
+      $scope.sector = climb.sector;
+      $scope.bolted_by = climb.bolted_by;
+      $scope.bolt_condition = climb.bolt_condition;
+      $scope.last_bolted = climb.last_bolted;
+      $scope.grade = climb.grade;
+      $scope.bolt_type = climb.bolt_type;
+      $scope.description = climb.description;
+      $scope.fixed_gear = climb.fixed_gear;
+    }
+
 
 
 
