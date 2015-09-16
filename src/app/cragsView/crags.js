@@ -39,7 +39,7 @@
           list.$add($scope.newCrag).then(function(ref) {
             var id = ref.key();
             console.log("added record with id " + id);
-            list.$indexFor(id); // returns location in the array
+            $scope.newCrag = {};// returns location in the array
           });
 
         }
