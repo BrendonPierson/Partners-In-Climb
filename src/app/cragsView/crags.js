@@ -32,9 +32,12 @@
           console.log("Error:", error);
         });
 
-        $scope.newCrag = {};
 
+        // Add new crag function
+        $scope.newCrag = {};
         $scope.addCrag = function(){
+          $scope.newCrag.addedByUid = currentAuth.uid;
+          $scope.newCrag.addedBy = currentAuth.facebook.displayName;
           console.log("newCrag: ", $scope.newCrag);
           list.$add($scope.newCrag).then(function(ref) {
             var id = ref.key();

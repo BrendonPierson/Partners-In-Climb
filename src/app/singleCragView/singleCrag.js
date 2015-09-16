@@ -2,8 +2,8 @@
   'use strict';
   angular.module('myApp.singleCrag', ['ui.router'])
     .controller('SingleCragCtrl', [
-      "$firebaseArray","currentAuth", "$scope", "Auth", "$stateParams",
-     function($firebaseArray, currentAuth, $scope, Auth, $stateParams) {
+      "$firebaseArray","currentAuth", "$scope", "Auth", "$stateParams", "FoundationApi",
+     function($firebaseArray, currentAuth, $scope, Auth, $stateParams, foundationApi) {
 
       $scope.climbs = [];
 
@@ -48,7 +48,7 @@
         .then(function(climbs){
           console.log("fb climbs", climbs);
           for (var i = 0; i < climbs.length; i++) {
-            if (climbs[i].crag_id === parseInt($stateParams.id)) {
+            if (climbs[i].crag_id == $stateParams.id) {
               $scope.climbs[$scope.climbs.length] = climbs[i];
             }
             console.log("area climbs", $scope.climbs);
@@ -56,11 +56,19 @@
         })
 
     // add a new area
-    $scope.climb = {};
+    $scope.newRoute = {};
 
-
-
-
+    $scope.addRoute = function(){
+      $scope.newRoute.createdBy = currentAuth.uid;
+      $scope.newRoute.crag_id = $stateParams.id;
+      $scope.newRoute.dateAdded = new Date();
+      climbs.$add($scope.newRoute).then(function(ref) {
+        var id = ref.key();
+        console.log("added record with id " + id);
+        $scope.newRoute = {};
+        foundationApi.publish('addRouteModal', 'close');
+      });
+    }
 
 
 

@@ -1,46 +1,158 @@
 <div ng-include="'partials/nav.html'"></div>
-<div class"grid-block">
-  <!-- <h3>{{ crag.name }}</h3> -->
-  <div class=" grid-block small-12">
-    <div class="grid-block small-12 medium-6 wrap main-content">
-      <div class="grid-block">
-        <div class="grid-content">
-          <div class="card">
-            <img ng-src="{{ crag.image }}">
-            <div class="card-divider">
-              {{ crag.name }}
+
+
+
+<!-- Modal -->
+<div zf-modal="" id="addRouteModal" class="collapse">
+    <div class="grid-block vertical">
+      <div class="primary title-bar">
+        <div class="center title">Add a Route</div>
+        <span zf-close="" class="right"><a>Close</a></span>
+      </div>
+      <div class="grid-content">
+        <form>
+          <div class="grid-block">
+            <div class="grid-content medium-6">  
+              <label> 
+                <h4>Route Name</h4>
+                <input type="text" ng-model="newRoute.name" placeholder="Pure Imagination">
+              </label>
             </div>
-            <div class="card-section">
-              <h4>{{ crag.city }}, {{ crag.state }}</h4>
-              <p>{{ crag.description }}.</p>
+            <div class="grid-content medium-6">  
+              <label>
+                <h4>Image</h4>
+                <span class="inline-label">
+                <span class="form-label">URL</span>
+                <input type="url" ng-model="newRoute.image_url" placeholder="http://google.com/images/kitten.jpg">
+                </span>
+              </label>
             </div>
           </div>
-        </div>
+          <div class="grid-block">
+            <div class="grid-content medium-6">          
+              <label> 
+                <h4>Sector</h4>
+                <input type="text" ng-model="newRoute.sector" placeholder="Chocolate Factory">
+              </label>
+            </div>
+            <div class="grid-content medium-6">          
+              <label> 
+                <h4>Bolted By</h4>
+                <input type="text" ng-model="newRoute.bolted_by" placeholder="Jonathan Seigrist">
+              </label>
+            </div>
+          </div>
+          <div class="grid-block">
+            <div class="grid-content medium-6">
+              <label> 
+                <h4>Bolt Condition</h4>
+                <input type="number" ng-model="newRoute.bolt_condition" placeholder="0-5" min="0" max="5">
+              </label>
+            </div>
+            <div class="grid-content medium-6">
+              <label> 
+                <h4>Last Bolted</h4>
+                <input type="date" ng-model="newRoute.last_bolted">
+              </label>
+            </div>
+          </div>
+          <div class="grid-block">
+            <div class="grid-content medium-6">
+              <label> 
+                <h4>Grade</h4>
+                <input type="text" ng-model="newRoute.grade" placeholder="5.14c">
+              </label>
+            </div>
+            <div class="grid-content medium-6">
+              <label> 
+                <h4>Hardware</h4>
+                <select ng-model="newRoute.bolt_type" name="state">
+                  <option value="Stainless Steel">Stainless Steel</option>
+                  <option value="Titanium">Titanium</option>
+                  <option value="Glue In">Glue In</option>
+                  <option value="Plated Steel">Plated Steel</option>
+                </select>
+              </label>
+            </div>
+          </div>
+          <div class="grid-block">
+            <div class="grid-content medium-6">
+              <label> 
+                <h4>Fixed Gear Description</h4>
+                  <textarea ng-model="newRoute.description" name="description" rows="2" cols="25" placeholder="An abundance of steep well featured sandstone make this area a world class destination."></textarea>
+              </label>
+            </div>
+            <div class="grid-content medium-6">
+              <label> 
+                <h4>Fixed Gear</h4>
+                <textarea rows="2" cols="25" ng-model="newRoute.fixed_gear" placeholder="ClimbTech 22kn cable permadraws"></textarea>
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="grid-block align-right">
+        <a class="button" ng-click="addRoute()">Submit</a>
       </div>
     </div>
-    <div class="grid-block small-12 medium-6 wrap main-content">
-      
-      <table wt-responsive-table>   
-        <tr>
-          <th>Name</th>
-          <th>Grade</th>
-          <th>Sector</th>
-          <th>Bolt Type</th>
-          <th>Last Bolted</th>
-          <th>Bolt Condition</th>
-          <th>Fixed Gear</th>
-        </tr>
-        <tr ng-repeat="climb in climbs">
-          <td>{{ climb.name }}</td>
-          <td>{{ climb.grade }}</td>
-          <td>{{ climb.sector }}</td>
-          <td>{{ climb.bolt_type }}</td>
-          <td>{{ climb.las_bolted }}</td>
-          <td>{{ climb.bolt_condition }}</td>
-          <td>{{ climb.fixed_gear }}</td>
-        </tr>
-      </table>
+  </div>
 
+
+<div class="grid-block">
+  <div class="grid-block medium-3">
+    <div class="grid-content">
+      <a class="button" href="#" zf-open="addRouteModal">Add Route</a>
+      <label>
+        <span class="inline-label">
+        <input type="search" placeholder="Search" ng-model="climbSearch">
+        <a href="#" class="button">Search</a>
+        </span>
+      </label>
+    </div>
+  </div>
+  <div class="grid-block medium-9">
+    <div class="grid-content">
+      <section class="reviews block-list with-icons">
+        <h3>Routes</h3>
+        <ul>
+          <!-- With a label -->
+          <li class="with-chevron" ng-repeat="climb in climbs | filter:climbSearch">
+            <a href="#">
+              <img src="http://placeimg.com/200/200/arch">
+              <span class="left stars block-list-label">{{ climb.grade }}</span>
+              <span class="left stars block-list-label">{{ climb.sector }}</span>
+              <!-- <span class="left stars block-list-label">&#42; &#42; &#42; &#42; &#42;</span> -->
+              <span class="block-list-label">{{ climb.name }}</span>
+            </a>
+          </li>
+        </ul>
+      </section>
     </div>
   </div>
 </div>
+
+  
+
+
+
+
+  <!-- <table wt-responsive-table>   
+    <tr>
+      <th>Name</th>
+      <th>Grade</th>
+      <th>Sector</th>
+      <th>Bolt Type</th>
+      <th>Last Bolted</th>
+      <th>Bolt Condition</th>
+      <th>Fixed Gear</th>
+    </tr>
+    <tr ng-repeat="climb in climbs">
+      <td>{{ climb.name }}</td>
+      <td>{{ climb.grade }}</td>
+      <td>{{ climb.sector }}</td>
+      <td>{{ climb.bolt_type }}</td>
+      <td>{{ climb.las_bolted }}</td>
+      <td>{{ climb.bolt_condition }}</td>
+      <td>{{ climb.fixed_gear }}</td>
+    </tr>
+  </table> -->
