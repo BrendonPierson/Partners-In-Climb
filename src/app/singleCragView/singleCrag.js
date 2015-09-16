@@ -5,7 +5,17 @@
       "$firebaseArray","currentAuth", "$scope", "Auth", "$stateParams",
      function($firebaseArray, currentAuth, $scope, Auth, $stateParams) {
 
-      console.log("stateParams", $stateParams.id);
+      $scope.climbs = [];
+
+      // DEBUG 
+      console.log("Climbing area ID:", $stateParams.id);
+      console.log("user Auth data", currentAuth);
+
+      // logout function needed for sidebar
+      $scope.logout = function() {
+        Auth.$unauth();
+        console.log("logged out");
+      }
 
       // auth is used by nav to display name or login
       $scope.auth = currentAuth;
@@ -13,16 +23,13 @@
         $scope.userName = currentAuth.facebook.displayName;
       }
 
-
-
-      console.log(currentAuth);
+      //firebase reference
+      var ref = new Firebase("https://bolt-it.firebaseio.com/");
+      // download the data into local objects
+      var crags = $firebaseArray(ref.child('areas'));
+      var climbs = $firebaseArray(ref.child('climbs'));
       
-      this.title = "HOME";
-
-      var ref = new Firebase("https://bolt-it.firebaseio.com/areas");
-      // download the data into a local object
-      var crags = $firebaseArray(ref);
-      
+      // Promises for fb data
       crags.$loaded()
         .then(function(crags) {
           console.log("firebase crags", crags); 
@@ -37,9 +44,16 @@
           console.log("Error:", error);
         });
 
-        $scope.logout = function() {
-          Auth.$unauth();
-          console.log("logged out");
-        }
+      climbs.$loaded()
+        .then(function(climbs){
+          console.log("fb climbs", climbs);
+          for (var i = 0; i < climbs.length; i++) {
+            if (climbs[i].crag_id === parseInt($stateParams.id)) {
+              $scope.climbs[$scope.climbs.length] = climbs[i];
+            }
+            console.log("area climbs", $scope.climbs);
+          };
+        })
+
     }]);
 })();
