@@ -6,21 +6,11 @@
     <title>Foundation Angular Seed</title>
     <link href="/css/app.css" rel="stylesheet" type="text/css">
   </head>
-  <body>
-    <div class="grid-frame vertical">
-      <div class="grid-content shrink" style="padding: 0;">
-        <ul class="primary vertical medium-horizontal condense menu-bar">
-          <li><a><strong>Foundation for Apps</strong></a></li>
-          <li><a ui-sref="home">Home</a></li>
-          <li><a ui-sref="about">About</a></li>
-        </ul>
-      </div>
-      <div class="grid-content">
-        <div class="grid-container">
-          <div ng-class="['ui-animation']" ui-view></div>
-        </div>
-      </div>
-    </div>
+  <body ng-cloak zf-esc-close>
+    
+      <div ng-class="['ui-animation']" ui-view></div>
+    
+
     <script src="/components/lib/foundation.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
@@ -28,8 +18,12 @@
     <script src="/app.js"></script>
     <script src="/home/home.js"></script>
     <script src="/view2/view2.js"></script>
+    <script src="/loginView/login.js"></script>
+    <script src="/cragsView/crags.js"></script>
     <script src="/components/auth/Auth.js"></script>
+    <script src="/addClimbView/addClimb.js"></script>
     <script src="/components/auth/fbAuth.js"></script>
+    <script src="/singleCragView/singleCrag.js"></script>
     <script src="/components/version/version.js"></script>
     <script src="/components/version/version-directive.js"></script>
     <script src="/components/version/interpolate-filter.js"></script>

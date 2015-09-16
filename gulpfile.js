@@ -27,11 +27,13 @@ var foundationJS = [
   'src/app/bower_components/fastclick/lib/fastclick.js',
   'src/app/bower_components/viewport-units-buggyfill/viewport-units-buggyfill.js',
   'src/app/bower_components/tether/tether.js',
+  'src/app/bower_components/hammerjs/hammer.js',
   'src/app/bower_components/angular/angular.js',
   'src/app/bower_components/angular-animate/angular-animate.js',
   'src/app/bower_components/angular-ui-router/release/angular-ui-router.js',
   'src/app/bower_components/firebase/firebase.js',
   'src/app/bower_components/angularfire/dist/angularfire.js',
+  'src/app/bower_components/lodash/lodash.js',
   'src/app/bower_components/foundation-apps/js/vendor/**/*.js',
   'src/app/bower_components/foundation-apps/js/angular/**/*.js',
   '!src/app/bower_components/foundation-apps/js/angular/app.js'

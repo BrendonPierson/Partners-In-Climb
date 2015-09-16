@@ -1,0 +1,29 @@
+<div ng-include="'partials/nav.html'"></div>
+<div class"grid-block">
+  <h3>Crags</h3>
+  <div class=" grid-block small-12">
+    <div class="grid-block show-for-medium medium-6">
+      <!--BEGIN MOUNTAIN PROJECT WIDGET-->
+      <iframe width="100%" height="1200px" frameborder="0" scrolling='auto' style='outline:1px solid #333;' src='http://www.mountainproject.com/widget?h=550&favs=1&loc=fixed&x=-9515349&y=4236631&z=6'></iframe>
+      <!--END MOUNTAIN PROJECT WIDGET-->
+    </div>
+    <div class="grid-block small-12 medium-6 wrap main-content">
+      <div class=" grid-block small-12 small-up-1 medium-up-2 large-up-3">
+        <div class="grid-content" ng-repeat="crag in crags">
+          <a ng-href="#!/crag/{{ crag.$id }}">
+            <div class="card">
+              <img ng-src="{{ crag.image }}">
+              <div class="card-divider">
+                {{ crag.name }}
+              </div>
+              <div class="card-section">
+                <h4>{{ crag.city }}, {{ crag.state }}</h4>
+                <p>{{ crag.description }}.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

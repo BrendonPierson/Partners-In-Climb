@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  angular.module('myApp.home', ['ui.router'])
+  angular.module('myApp.addClimb', ['ui.router'])
     // .config(['$stateProvider', function($stateProvider) {
     //   $stateProvider.state('home', {
     //     url: '/',
@@ -9,7 +9,7 @@
     //     controllerAs: 'home',
     //   });
     // }])
-    .controller('HomeCtrl', [
+    .controller('AddClimbCtrl', [
       "$firebaseArray","currentAuth", "$scope", "Auth",
      function($firebaseArray, currentAuth, $scope, Auth) {
 

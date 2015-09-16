@@ -1,0 +1,59 @@
+<div class="grid-block shrink wrap">
+  <div class="grid-content collapse small-12 medium-6">
+    <ul class="menu-bar dark">
+      <li><a ui-sref="home">Partners In Climb</a></li>
+    </ul>
+  </div>
+  <div class="grid-content collapse small-12 medium-6">
+    <ul class="menu-bar dark">
+      <li ui-sref-active="is-active"><a ui-sref="crags">Crags</a></li>
+      <li ui-sref-active="is-active"><a ui-sref="about">About</a></li>
+      <li ui-sref-active="is-active" ng-hide="auth"><a ui-sref="login">login</a></li>
+      <li ng-show="auth"><a href="#" zf-open="userInfo">{{ userName }}</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- User info Panel -->
+<div zf-panel="" id="userInfo" position="right">
+  <a zf-close="" class="close-button">X</a>
+  <div class="grid-block align-center">
+    <div class="grid-content">
+      <h4><a ui-sref="home">&#10094; Back</a></h4>
+      
+      <hr />
+
+      <section class="block-list">
+        <header>{{ userName }}</header>
+        <ul>
+          <li><input type="text" value="{{ auth.facebook.email }}"></li>
+          <li><input type="password" value="password1234"></li>
+        </ul>
+      </section>
+    
+      <section class="block-list">
+        <header>Filtering</header>
+        <ul>
+          <li>
+            <span>Filter Spam</span>
+            <div class="switch"><input type="checkbox" id="setting1"><label for="setting1"></label></div>
+          </li>
+          <li>
+            <span>Delete Facebook Emails</span>
+            <div class="switch"><input type="checkbox" id="setting2"><label for="setting2"></label></div>
+          </li>
+          <li>
+            <span>Bake Pizza</span>
+            <div class="switch"><input type="checkbox" id="setting3"><label for="setting3"></label></div>
+          </li>
+          <li>
+            <span>Consider Corgis</span>
+            <div class="switch"><input type="checkbox" id="setting4"><label for="setting4"></label></div>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </div>
+  <a href="#" class="alert button" ng-click="logout()">Log Out</a>
+</div>
+

@@ -1,0 +1,25 @@
+<div ng-include="'partials/nav.html'"></div>
+<div class"grid-block">
+  <!-- <h3>{{ crag.name }}</h3> -->
+  <div class=" grid-block small-12">
+    <div class="grid-block small-12 medium-6 wrap main-content">
+      <div class="grid-block">
+        <div class="grid-content">
+          <div class="card">
+            <img ng-src="{{ crag.image }}">
+            <div class="card-divider">
+              {{ crag.name }}
+            </div>
+            <div class="card-section">
+              <h4>{{ crag.city }}, {{ crag.state }}</h4>
+              <p>{{ crag.description }}.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-block show-for-medium medium-6">
+    Climbs
+    </div>
+  </div>
+</div>

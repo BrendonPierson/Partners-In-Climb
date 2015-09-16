@@ -1,15 +1,7 @@
 (function() {
   'use strict';
-  angular.module('myApp.home', ['ui.router'])
-    // .config(['$stateProvider', function($stateProvider) {
-    //   $stateProvider.state('home', {
-    //     url: '/',
-    //     templateUrl: 'home/home.html',
-    //     controller: 'HomeCtrl',
-    //     controllerAs: 'home',
-    //   });
-    // }])
-    .controller('HomeCtrl', [
+  angular.module('myApp.crags', ['ui.router'])
+    .controller('CragsCtrl', [
       "$firebaseArray","currentAuth", "$scope", "Auth",
      function($firebaseArray, currentAuth, $scope, Auth) {
 
@@ -23,12 +15,13 @@
       
       this.title = "HOME";
 
-      var ref = new Firebase("https://bolt-it.firebaseio.com");
+      var ref = new Firebase("https://bolt-it.firebaseio.com/areas");
       // download the data into a local object
       var list = $firebaseArray(ref);
+      $scope.crags = list;
       list.$loaded()
         .then(function(x) {
-          console.log(x); // true
+          console.log("firebase crags", x); 
         })
         .catch(function(error) {
           console.log("Error:", error);

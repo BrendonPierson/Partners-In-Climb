@@ -13,6 +13,10 @@
     'myApp.view2',
     'myApp.version',
     'myApp.auth',
+    'myApp.login',
+    'myApp.crags',
+    'myApp.singleCrag',
+    'myApp.addClimb',
     'firebase'
   ])
     .config(config)
@@ -23,6 +27,77 @@
   run.$inject = ["$rootScope", "$state"];
 
   function config($urlProvider, $locationProvider, $stateProvider) {
+
+    $stateProvider
+    .state('home', {
+      url: '/',
+      templateUrl: 'home/home.html',
+      controller: 'HomeCtrl',
+      controllerAs: 'home',
+      resolve: {
+        // controller will not be loaded until $waitForAuth resolves
+        // Auth refers to our $firebaseAuth wrapper in the example above
+        "currentAuth": ["Auth", function(Auth) {
+          // $waitForAuth returns a promise so the resolve waits for it to complete
+          return Auth.$waitForAuth();
+        }]
+      }
+    })
+    .state('crags', {
+      url: '/crags',
+      templateUrl: 'cragsView/crags.html',
+      controller: 'CragsCtrl',
+      resolve: {
+        // controller will not be loaded until $waitForAuth resolves
+        // Auth refers to our $firebaseAuth wrapper in the example above
+        "currentAuth": ["Auth", function(Auth) {
+          // $waitForAuth returns a promise so the resolve waits for it to complete
+          return Auth.$waitForAuth();
+        }]
+      }
+    })
+    .state('crag', {
+      url: '/crag/:id'  ,
+      templateUrl: 'singleCragView/singleCrag.html',
+      controller: 'SingleCragCtrl',
+      resolve: {
+        // controller will not be loaded until $waitForAuth resolves
+        // Auth refers to our $firebaseAuth wrapper in the example above
+        "currentAuth": ["Auth", function(Auth) {
+          // $waitForAuth returns a promise so the resolve waits for it to complete
+          return Auth.$waitForAuth();
+        }]
+      }
+    })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'loginView/login.html',
+      controller: 'LoginCtrl',
+      resolve: {
+        // controller will not be loaded until $waitForAuth resolves
+        // Auth refers to our $firebaseAuth wrapper in the example above
+        "currentAuth": ["Auth", function(Auth) {
+          // $waitForAuth returns a promise so the resolve waits for it to complete
+          return Auth.$waitForAuth();
+        }]
+      }
+    })
+    .state('about', {
+      url: '/about',
+      templateUrl: 'view2/view2.html',
+      controller: 'View2Ctrl',
+      resolve: {
+        // controller will not be loaded until $waitForAuth resolves
+        // Auth refers to our $firebaseAuth wrapper in the example above
+        "currentAuth": ["Auth", function(Auth) {
+          // $waitForAuth returns a promise so the resolve waits for it to complete
+          return Auth.$requireAuth();
+        }]
+      }
+    });
+
+
+
 
     $urlProvider.otherwise('/');
 
