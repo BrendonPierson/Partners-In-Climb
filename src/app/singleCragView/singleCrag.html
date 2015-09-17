@@ -99,8 +99,57 @@
 
 <!-- Specific Climb Details Panel -->
 <div zf-panel="" id="routeDetails" position="right">
-  <a zf-close="" class="close-button">×</a>
-  <p>{{ climbName }}</p>
+  <a zf-close="" class="close-button" ng-click="submitClimbEdits()">×</a>
+  <h2>{{ climb.name }}</h2>
+  <img ng-src="{{ climb.image_url }}">
+   
+  <label>
+    <span class="inline-label">
+      <span class="form-label">Grade</span>
+      <input type="text" ng-model="climb.grade">
+    </span>
+  </label>
+    
+  <label>
+    <span class="inline-label">
+      <span class="form-label">Sector</span>
+      <input type="text" ng-model="climb.sector">
+    </span>
+  </label>
+    
+  <label>
+    <span class="inline-label">
+      <span class="form-label">Bolted By</span>
+      <input type="text" ng-model="climb.bolted_by">
+    </span>
+  </label>
+    
+  <label>
+    <span class="inline-label">
+      <span class="form-label">Descritpion</span>
+      <textarea rows="4" ng-model="climb.description"></textarea> 
+    </span>
+  </label>
+
+  <label>
+    <span class="inline-label">
+      <span class="form-label">Hardware</span>
+      <select ng-options="option.$value for option in bolt_types track by option.$value" ng-model="climb.bolt_type"></select>
+    </span>
+  </label>
+
+  <label>
+    <span class="inline-label">
+      <span class="form-label">Bolted Condition</span>
+      <input type="number" ng-model="climb.bolt_condition" min="0" max="5">
+    </span>
+  </label>
+  <label>
+    <span class="inline-label">
+      <span class="form-label">Fixed Gear</span>
+      <textarea rows="2" ng-model="climb.fixed_gear">></textarea>
+    </span>
+  </label>
 </div>
 
 <div class="grid-block">
@@ -123,7 +172,7 @@
           <!-- With a label -->
           <li class="with-chevron" ng-repeat="climb in climbs | filter:climbSearch">
             <a href="#" zf-open="routeDetails" ng-click="setPanelDetails(climb)">
-              <img src="http://placeimg.com/200/200/arch">
+              <img ng-src="{{ climb.image_url }}">
               <span class="left stars block-list-label">{{ climb.grade }}</span>
               <span class="left stars block-list-label">{{ climb.sector }}</span>
               <!-- <span class="left stars block-list-label">&#42; &#42; &#42; &#42; &#42;</span> -->
@@ -141,23 +190,3 @@
 
 
 
-  <!-- <table wt-responsive-table>   
-    <tr>
-      <th>Name</th>
-      <th>Grade</th>
-      <th>Sector</th>
-      <th>Bolt Type</th>
-      <th>Last Bolted</th>
-      <th>Bolt Condition</th>
-      <th>Fixed Gear</th>
-    </tr>
-    <tr ng-repeat="climb in climbs">
-      <td>{{ climb.name }}</td>
-      <td>{{ climb.grade }}</td>
-      <td>{{ climb.sector }}</td>
-      <td>{{ climb.bolt_type }}</td>
-      <td>{{ climb.las_bolted }}</td>
-      <td>{{ climb.bolt_condition }}</td>
-      <td>{{ climb.fixed_gear }}</td>
-    </tr>
-  </table> -->
