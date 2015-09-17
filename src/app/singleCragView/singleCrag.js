@@ -58,17 +58,46 @@
           };
         })
 
+      climbs.$watch(function(climbs){
+        console.log("fb climbs", climbs);
+        for (var i = 0; i < climbs.length; i++) {
+          if (climbs[i].crag_id == $stateParams.id) {
+            $scope.climbs[$scope.climbs.length] = climbs[i];
+          }
+          console.log("area climbs", $scope.climbs);
+        };
+      });
+
     // add a new route
     $scope.newRoute = {};
 
     $scope.addRoute = function(){
+      var time = new Date();
+      $scope.newRoute.dateAdded = time.getTime();
       $scope.newRoute.createdBy = currentAuth.uid;
       $scope.newRoute.crag_id = $stateParams.id;
-      $scope.newRoute.dateAdded = new Date();
+
+      console.log("$scope.last_bolted", $scope.newRoute.last_bolted);
+      var rawArr = $scope.newRoute.last_bolted.split("/").map(function(n){return parseInt(n)});
+      console.log(rawArr);
+      var dateArr = [];
+      dateArr[0] = rawArr[2];
+      dateArr[1] = rawArr[0];
+      dateArr[2] = rawArr[1];
+      console.log(dateArr.join(","));
+      // var lastBolted = new Date($scope.newRoute.last_bolted.split("/").map().reverse().join(","));
+      var lastBolted = new Date(dateArr.join(","));
+      $scope.newRoute.last_bolted = lastBolted.getTime();
+
+      console.log("$scope.newROute.last_bolted", $scope.newRoute.last_bolted);
+     
+
+      // console.log("new route", $scope.newRoute);
+
+      // ref.child('climbs').push($scope.newRoute);
 
       climbs.$add($scope.newRoute).then(function(ref) {
-        var id = ref.key();
-        console.log("added record with id " + id);
+        console.log("added record " + ref);
         $scope.newRoute = {};
         foundationApi.publish('addRouteModal', 'close');
       });

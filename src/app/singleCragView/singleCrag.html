@@ -1,7 +1,6 @@
 <div ng-include="'partials/nav.html'"></div>
 
 
-
 <!-- Modal -->
 <div zf-modal="" id="addRouteModal" class="collapse">
     <div class="grid-block vertical">
@@ -52,7 +51,7 @@
             <div class="grid-content medium-6">
               <label> 
                 <h4>Last Bolted</h4>
-                <input type="date" ng-model="newRoute.last_bolted">
+                <input type="text" ng-model="newRoute.last_bolted" placeholder="06/22/1998">
               </label>
             </div>
           </div>
@@ -60,7 +59,40 @@
             <div class="grid-content medium-6">
               <label> 
                 <h4>Grade</h4>
-                <input type="text" ng-model="newRoute.grade" placeholder="5.14c">
+                <select ng-model="newRoute.grade" placeholder="5.14c">
+                  <option value="5.5">5.5</option>
+                  <option value="5.6">5.6</option>
+                  <option value="5.7">5.7</option>
+                  <option value="5.8">5.8</option>
+                  <option value="5.9">5.9</option>
+                  <option value="5.10a">5.10a</option>
+                  <option value="5.10b">5.10b</option>
+                  <option value="5.10c">5.10c</option>
+                  <option value="5.10d">5.10d</option>
+                  <option value="5.11a">5.11a/b</option>
+                  <option value="5.11c">5.11c</option>
+                  <option value="5.11d">5.11d</option>
+                  <option value="5.12a">5.12a</option>
+                  <option value="5.12b">5.12b</option>
+                  <option value="5.12c">5.12c</option>
+                  <option value="5.12d">5.12d</option>
+                  <option value="5.13a">5.13a</option>
+                  <option value="5.13b">5.13b</option>
+                  <option value="5.13c">5.13c</option>
+                  <option value="5.13d">5.13d</option>
+                  <option value="5.14a">5.14a</option>
+                  <option value="5.14b">5.14b</option>
+                  <option value="5.14c">5.14c</option>
+                  <option value="5.14d">5.14d</option>
+                  <option value="5.15a">5.15a</option>
+                  <option value="5.15b">5.15b</option>
+                  <option value="5.15c">5.15c</option>
+                  <option value="5.15d">5.15d</option>
+                </select>
+
+
+
+
               </label>
             </div>
             <div class="grid-content medium-6">
@@ -78,7 +110,7 @@
           <div class="grid-block">
             <div class="grid-content medium-6">
               <label> 
-                <h4>Fixed Gear Description</h4>
+                <h4>Description</h4>
                   <textarea ng-model="newRoute.description" name="description" rows="2" cols="25" placeholder="An abundance of steep well featured sandstone make this area a world class destination."></textarea>
               </label>
             </div>
@@ -106,8 +138,42 @@
   <label>
     <span class="inline-label">
       <span class="form-label">Grade</span>
-      <input type="text" ng-model="climb.grade">
+      <select ng-model="climb.grade" value="{{ climb.grade }}">
+        <option value="5.5</option">5.5</option>
+        <option value="5.6">5.6</option>
+        <option value="5.7">5.7</option>
+        <option value="5.8">5.8</option>
+        <option value="5.9">5.9</option>
+        <option value="5.10a">5.10a</option>
+        <option value="5.10b">5.10b</option>
+        <option value="5.10c">5.10c</option>
+        <option value="5.10d">5.10d</option>
+        <option value="5.11a">5.11a/b</option>
+        <option value="5.11c">5.11c</option>
+        <option value="5.11d">5.11d</option>
+        <option value="5.12a">5.12a</option>
+        <option value="5.12b">5.12b</option>
+        <option value="5.12c">5.12c</option>
+        <option value="5.12d">5.12d</option>
+        <option value="5.13a">5.13a</option>
+        <option value="5.13b">5.13b</option>
+        <option value="5.13c">5.13c</option>
+        <option value="5.13d">5.13d</option>
+        <option value="5.14a">5.14a</option>
+        <option value="5.14b">5.14b</option>
+        <option value="5.14c">5.14c</option>
+        <option value="5.14d">5.14d</option>
+        <option value="5.15a">5.15a</option>
+        <option value="5.15b">5.15b</option>
+        <option value="5.15c">5.15c</option>
+        <option value="5.15d">5.15d</option>
+      </select>
+      <!-- <input type="text" ng-model="climb.grade"> -->
     </span>
+
+
+
+
   </label>
     
   <label>
@@ -134,7 +200,10 @@
   <label>
     <span class="inline-label">
       <span class="form-label">Hardware</span>
-      <select ng-options="option.$value for option in bolt_types track by option.$value" ng-model="climb.bolt_type"></select>
+      <!-- <select ng-options="option.$value for option in bolt_types track by option.$value" ng-model="climb.bolt_type"></select> -->
+      <select ng-model="climb.bolt_type">
+      <option ng-repeat="option in bolt_types" value="{{option.$value}}">{{ option.$value }}</option>
+    </select>
     </span>
   </label>
 
@@ -150,10 +219,11 @@
       <textarea rows="2" ng-model="climb.fixed_gear">></textarea>
     </span>
   </label>
+  <a zf-close="" class="button" ng-click="submitClimbEdits()">Submit Changes</a>
 </div>
 
-<div class="grid-block">
-  <div class="grid-block medium-3">
+<div class="grid-block shrink wrap">
+  <div class="grid-block small-12 medium-3">
     <div class="grid-content">
       <a class="button" href="#" zf-open="addRouteModal">Add Route</a>
       <label>
@@ -164,19 +234,21 @@
       </label>
     </div>
   </div>
-  <div class="grid-block medium-9">
+  <div class="grid-block small-12 medium-9">
     <div class="grid-content">
       <section class="reviews block-list with-icons">
         <h3>Routes</h3>
         <ul>
           <!-- With a label -->
           <li class="with-chevron" ng-repeat="climb in climbs | filter:climbSearch">
-            <a href="#" zf-open="routeDetails" ng-click="setPanelDetails(climb)">
+            <a zf-open="routeDetails" ng-click="setPanelDetails(climb)">
               <img ng-src="{{ climb.image_url }}">
-              <span class="left stars block-list-label">{{ climb.grade }}</span>
-              <span class="left stars block-list-label">{{ climb.sector }}</span>
+
+              <span class="left stars block-list-label"></span>
+              <span class="left block-list-label">{{ climb.name }}</span>
+              <span class="right stars block-list-label">{{ climb.grade }}</span>
+              <span class="right stars block-list-label hide-for-small-only">{{ climb.sector }}</span>
               <!-- <span class="left stars block-list-label">&#42; &#42; &#42; &#42; &#42;</span> -->
-              <span class="block-list-label">{{ climb.name }}</span>
             </a>
           </li>
         </ul>
