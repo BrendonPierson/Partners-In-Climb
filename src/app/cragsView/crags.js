@@ -5,20 +5,9 @@
       "$firebaseArray","currentAuth", "$scope", "Auth", 'FoundationApi',
      function($firebaseArray, currentAuth, $scope, Auth, foundationApi) {
 
-      // auth is used by nav to display name or login
-      $scope.auth = currentAuth;
-      if($scope.auth){
-        $scope.userName = currentAuth.facebook.displayName;
-      }
-
       // DEBUG console.logs
       console.log(currentAuth);
 
-      // Logout funciton
-      $scope.logout = function() {
-        Auth.$unauth();
-        console.log("logged out");
-      }
 
       var ref = new Firebase("https://bolt-it.firebaseio.com/areas");
       // download the data into a local object

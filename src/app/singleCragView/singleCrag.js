@@ -11,17 +11,6 @@
       console.log("Climbing area ID:", $stateParams.id);
       console.log("user Auth data", currentAuth);
 
-      // logout function needed for sidebar
-      $scope.logout = function() {
-        Auth.$unauth();
-        console.log("logged out");
-      }
-
-      // auth is used by nav to display name or login
-      $scope.auth = currentAuth;
-      if($scope.auth){
-        $scope.userName = currentAuth.facebook.displayName;
-      }
 
       //firebase reference
       var ref = new Firebase("https://bolt-it.firebaseio.com/");
@@ -90,11 +79,6 @@
       $scope.newRoute.last_bolted = lastBolted.getTime();
 
       console.log("$scope.newROute.last_bolted", $scope.newRoute.last_bolted);
-     
-
-      // console.log("new route", $scope.newRoute);
-
-      // ref.child('climbs').push($scope.newRoute);
 
       climbs.$add($scope.newRoute).then(function(ref) {
         console.log("added record " + ref);

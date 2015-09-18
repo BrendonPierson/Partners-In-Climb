@@ -14,9 +14,11 @@
     'myApp.version',
     'myApp.auth',
     'myApp.login',
+    'myApp.about',
     'myApp.crags',
     'myApp.singleCrag',
     'myApp.addClimb',
+    'myApp.nav',
     'firebase'
   ])
     .config(config)
@@ -34,6 +36,20 @@
       templateUrl: 'home/home.html',
       controller: 'HomeCtrl',
       controllerAs: 'home',
+      resolve: {
+        // controller will not be loaded until $waitForAuth resolves
+        // Auth refers to our $firebaseAuth wrapper in the example above
+        "currentAuth": ["Auth", function(Auth) {
+          // $waitForAuth returns a promise so the resolve waits for it to complete
+          return Auth.$waitForAuth();
+        }]
+      }
+    })
+    .state('about', {
+      url: '/about',
+      templateUrl: 'aboutView/about.html',
+      controller: 'AboutCtrl',
+      controllerAs: 'about',
       resolve: {
         // controller will not be loaded until $waitForAuth resolves
         // Auth refers to our $firebaseAuth wrapper in the example above
@@ -81,20 +97,20 @@
           return Auth.$waitForAuth();
         }]
       }
-    })
-    .state('about', {
-      url: '/about',
-      templateUrl: 'view2/view2.html',
-      controller: 'View2Ctrl',
-      resolve: {
-        // controller will not be loaded until $waitForAuth resolves
-        // Auth refers to our $firebaseAuth wrapper in the example above
-        "currentAuth": ["Auth", function(Auth) {
-          // $waitForAuth returns a promise so the resolve waits for it to complete
-          return Auth.$requireAuth();
-        }]
-      }
     });
+    // .state('about', {
+    //   url: '/about',
+    //   templateUrl: 'view2/view2.html',
+    //   controller: 'View2Ctrl',
+    //   resolve: {
+    //     // controller will not be loaded until $waitForAuth resolves
+    //     // Auth refers to our $firebaseAuth wrapper in the example above
+    //     "currentAuth": ["Auth", function(Auth) {
+    //       // $waitForAuth returns a promise so the resolve waits for it to complete
+    //       return Auth.$requireAuth();
+    //     }]
+    //   }
+    // });
 
 
 

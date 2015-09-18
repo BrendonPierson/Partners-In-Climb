@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Foundation Angular Seed</title>
     <link href="/css/app.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   </head>
   <body ng-cloak zf-esc-close>
-    
-      <div ng-class="['ui-animation']" ui-view></div>
+    <div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
+    <div id="view" ng-class="['ui-animation']" ui-view></div>
     
 
     <script src="/components/lib/foundation.js"></script>
@@ -22,7 +23,9 @@
     <script src="/cragsView/crags.js"></script>
     <script src="/components/auth/Auth.js"></script>
     <script src="/addClimbView/addClimb.js"></script>
+    <script src="/aboutView/about.js"></script>
     <script src="/components/auth/fbAuth.js"></script>
+    <script src="/components/navCtrl.js"></script>
     <script src="/singleCragView/singleCrag.js"></script>
     <script src="/components/version/version.js"></script>
     <script src="/components/version/version-directive.js"></script>

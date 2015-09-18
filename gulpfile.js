@@ -142,7 +142,7 @@ gulp.task('default', ['build', 'server:start'], function() {
   gulp.watch(['./src/app/scss/**/*', './scss/**/*'], ['sass']);
 
   // Watch JavaScript
-  // gulp.watch(['./src/app/**/*.js', './js/**/*'], ['uglify']);
+  gulp.watch(['./src/app/**/*.js', './js/**/*'], ['uglify']);
 
   // Watch static files
   gulp.watch(['./src/app/**/*.*',
