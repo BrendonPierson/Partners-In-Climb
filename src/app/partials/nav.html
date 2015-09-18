@@ -6,8 +6,8 @@
   </div>
   <div class="grid-content collapse small-12 medium-6">
     <ul class="menu-bar dark">
-      <li ui-sref-active="is-active"><a ui-sref="crags">Crags</a></li>
       <li ui-sref-active="is-active"><a ui-sref="about">About</a></li>
+      <li ui-sref-active="is-active"><a ui-sref="crags">Crags</a></li>
       <li ui-sref-active="is-active" ng-hide="auth"><a ui-sref="login">login</a></li>
       <li ng-show="auth"><a href="#" zf-open="userInfo">{{ userName }}</a></li>
     </ul>
@@ -19,19 +19,20 @@
   <!-- <a zf-close="" class="close-button">X</a> -->
   <div class="grid-block align-center">
     <div class="grid-content">
-      <h4><a zf-close="userInfo">&#10094; Back</a></h4>
+      <h4><a zf-close="userInfo" class="expand button">&#10094; Back</a></h4>
       
       <hr />
 
       <section class="block-list">
-        <header>{{ userName }}</header>
+        <h3>Logged in as {{ userName }}</h3>
+        <header>Edit your account information</header>
         <ul>
           <li><input type="text" value="{{ auth.facebook.email }}"></li>
           <li><input type="password" value="password1234"></li>
         </ul>
       </section>
     
-      <section class="block-list">
+      <!-- <section class="block-list">
         <header>Filtering</header>
         <ul>
           <li>
@@ -51,10 +52,11 @@
             <div class="switch"><input type="checkbox" id="setting4"><label for="setting4"></label></div>
           </li>
         </ul>
-      </section>
+      </section> -->
     </div>
   </div>
   <a href="#" class="alert button" ng-click="logout()">Log Out</a>
 </div>
 
-<zf-notification-set autoclose="3000" id="main-notifications" position="top-left"></zf-notification-set>
+
+<zf-notification-set id="main-notifications" autoclose="3000" position="top-left"></zf-notification-set>

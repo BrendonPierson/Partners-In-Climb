@@ -66,19 +66,14 @@
       $scope.newRoute.createdBy = currentAuth.uid;
       $scope.newRoute.crag_id = $stateParams.id;
 
-      console.log("$scope.last_bolted", $scope.newRoute.last_bolted);
+      // Turn entered date string into data object
       var rawArr = $scope.newRoute.last_bolted.split("/").map(function(n){return parseInt(n)});
-      console.log(rawArr);
       var dateArr = [];
       dateArr[0] = rawArr[2];
       dateArr[1] = rawArr[0];
       dateArr[2] = rawArr[1];
-      console.log(dateArr.join(","));
-      // var lastBolted = new Date($scope.newRoute.last_bolted.split("/").map().reverse().join(","));
       var lastBolted = new Date(dateArr.join(","));
       $scope.newRoute.last_bolted = lastBolted.getTime();
-
-      console.log("$scope.newROute.last_bolted", $scope.newRoute.last_bolted);
 
       climbs.$add($scope.newRoute).then(function(ref) {
         console.log("added record " + ref);
@@ -102,6 +97,15 @@
       });
     }
 
+      var rating = 0;
+    $scope.vote = function(climb, direction){
+      console.log("vote: ", direction);
+      console.log("climb", climb);
+      rating = direction > 1 ? rating + 1 : rating -1 ;
+      // $scope.climb.rating += direction > 1 ? 1 : -1 ;
+      console.log(rating);
+
+    }
 
 
     }]);

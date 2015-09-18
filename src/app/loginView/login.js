@@ -5,9 +5,6 @@
       "currentAuth", "$state", "$scope", "FoundationApi",
      function(currentAuth, $state, $scope, foundationApi) {
 
-      // auth is used by nav to display login or profile
-      $scope.auth = currentAuth;
-
       if (currentAuth === null) {
         var ref = new Firebase("https://bolt-it.firebaseio.com"); 
         ref.authWithOAuthPopup("facebook", function(error, authData) {
@@ -23,8 +20,9 @@
           scope: "email" // the permissions requested
         });        
       } else {
-        $state.go("home");
+        $state.go("crags");
       }
+
 
     }]);
 })();

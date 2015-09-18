@@ -36,7 +36,12 @@ html, body, #view {
     text-align: center;
   }
   #aboutStory {
-    background: linear-gradient(rgba(0,0,0, .1), rgba(0,0,0, .9));
+    background: linear-gradient(rgba(0,0,0, .01), rgba(0,0,0, 1));
+    height: 100%;
   }
+}
 
+#carabiner {
+  background: url('http://demandware.edgesuite.net/aakn_prd/on/demandware.static/-/Sites-BlackDiamond-Library/default/dw56c5d8d6/images/Experience/QC_Lab/rope-worn-biners/CRW_6011.jpg') no-repeat center center fixed;
+  background-size: cover;
 }

@@ -128,9 +128,12 @@
 
 <!-- Specific Climb Details Panel -->
 <div zf-panel="" id="routeDetails" position="right">
-  <a zf-close="" class="close-button" ng-click="submitClimbEdits()">×</a>
-  <h2>{{ climb.name }}</h2>
-  <img ng-src="{{ climb.image_url }}">
+<h4 class="text-right"><a class="expand button" zf-close="routeDetails">&#10094; Back</a></h4>
+  <!-- <a zf-close="" class="close-button" ng-click="submitClimbEdits()">×</a> -->
+  <h3 class="text-center"><a><i class="fa fa-arrow-circle-up fa-2x" ng-click="vote(climb,2)"></i></a> {{ climb.name }} <a><i class="fa fa-arrow-circle-down fa-2x" ng-click="vote(climb, 1)"></i></a></h3>
+  <a href="https://www.facebook.com/actionfundclimbing" class="expand button success"><h4 class="text-center">Donate Now!</h4></a>
+
+  <img class="thumbnail" ng-src="{{ climb.image_url }}">
    
   <label>
     <span class="inline-label">
@@ -238,14 +241,13 @@
         <ul>
           <!-- With a label -->
           <li class="with-chevron" ng-repeat="climb in climbs | filter:climbSearch">
+
             <a zf-open="routeDetails" ng-click="setPanelDetails(climb)">
               <img ng-src="{{ climb.image_url }}">
-
               <span class="left stars block-list-label"></span>
               <span class="left block-list-label">{{ climb.name }}</span>
               <span class="right stars block-list-label">{{ climb.grade }}</span>
               <span class="right stars block-list-label hide-for-small-only">{{ climb.sector }}</span>
-              <span class="left stars block-list-label">&#42; &#42; &#42; &#42; &#42;</span>
             </a>
           </li>
         </ul>
