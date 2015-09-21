@@ -130,7 +130,7 @@
 <div zf-panel="" id="routeDetails" position="right">
 <h4 class="text-right"><a class="expand button" zf-close="routeDetails">&#10094; Back</a></h4>
   <!-- <a zf-close="" class="close-button" ng-click="submitClimbEdits()">×</a> -->
-  <h3 class="text-center"><a><i class="fa fa-arrow-circle-up fa-2x" ng-click="vote(climb,2)"></i></a> {{ climb.name }} <a><i class="fa fa-arrow-circle-down fa-2x" ng-click="vote(climb, 1)"></i></a></h3>
+  <h3 class="text-center"><a><i class="fa fa-arrow-circle-up" ng-click="vote(climb,2)"></i></a> {{ climb.name }} <a><i class="fa fa-arrow-circle-down" ng-click="vote(climb, 1)"></i></a></h3>
   <a href="https://www.facebook.com/actionfundclimbing" class="expand button success"><h4 class="text-center">Donate Now!</h4></a>
 
   <img class="thumbnail" ng-src="{{ climb.image_url }}">
@@ -235,24 +235,48 @@
     </div>
   </div>
   <div class="grid-block small-12 medium-9">
-    <div class="grid-content">
-      <section class="reviews block-list with-icons">
+    <!-- <div class="grid-content">
+      <section class="block-list with-icons">
         <h3>Routes</h3>
         <ul>
-          <!-- With a label -->
           <li class="with-chevron" ng-repeat="climb in climbs | filter:climbSearch">
 
+            <a ng-click="vote(climb,2)">
+              <span class="left stars block-list-label"><i class="fa fa-arrow-circle-up"></i> Up Vote</span>
+            </a>
             <a zf-open="routeDetails" ng-click="setPanelDetails(climb)">
               <img ng-src="{{ climb.image_url }}">
-              <span class="left stars block-list-label"></span>
               <span class="left block-list-label">{{ climb.name }}</span>
               <span class="right stars block-list-label">{{ climb.grade }}</span>
               <span class="right stars block-list-label hide-for-small-only">{{ climb.sector }}</span>
             </a>
+            <a ng-click="vote(climb,1)">
+              <span class="left stars block-list-label"><i class="fa fa-arrow-circle-down"></i> Down Vote</span>
+            </a>
           </li>
         </ul>
       </section>
-    </div>
+    </div> -->
+        <ul class="no-bullet">
+          <li ng-repeat="climb in climbs | filter:climbSearch">
+            <div class="grid-block">
+              <div class="grid-block">
+                <a><img class="thumbnail" ng-src="{{ climb.image_url }}"></a>
+              </div>
+              <div class="grid-block">
+                <a ng-click="vote(climb,2)">
+                  <span class="left stars block-list-label"><i class="fa fa-arrow-circle-up"></i> Up Vote </span>
+                </a>
+                <a ng-click="vote(climb,1)">
+                  <span class="left stars block-list-label"><i class="fa fa-arrow-circle-down"></i> Down Vote </span>
+                </a>
+              </div>
+              <div class="grid-block">
+                {{ climb.name }} {{ climb.grade }} {{ climb.sector }}
+              </div>
+            </div>
+          </li>
+        </ul>
   </div>
 </div>
 

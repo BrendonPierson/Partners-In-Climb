@@ -2,8 +2,8 @@
   'use strict';
   angular.module('myApp.singleCrag', ['ui.router'])
     .controller('SingleCragCtrl', [
-      "$firebaseArray","currentAuth", "$scope", "Auth", "$stateParams", "FoundationApi",
-     function($firebaseArray, currentAuth, $scope, Auth, $stateParams, foundationApi) {
+      "$firebaseArray","$firebaseObject","currentAuth", "$scope", "Auth", "$stateParams", "FoundationApi",
+     function($firebaseArray, $firebaseObject, currentAuth, $scope, Auth, $stateParams, foundationApi) {
 
       $scope.climbs = [];
 
@@ -17,6 +17,8 @@
       // download the data into local objects
       var crags = $firebaseArray(ref.child('areas'));
       var climbs = $firebaseArray(ref.child('climbs'));
+      var ratings = $firebaseObject(ref.child('ratings'));
+     
       $scope.bolt_types = $firebaseArray(ref.child('hardware'));
 
 
@@ -67,13 +69,15 @@
       $scope.newRoute.crag_id = $stateParams.id;
 
       // Turn entered date string into data object
-      var rawArr = $scope.newRoute.last_bolted.split("/").map(function(n){return parseInt(n)});
-      var dateArr = [];
-      dateArr[0] = rawArr[2];
-      dateArr[1] = rawArr[0];
-      dateArr[2] = rawArr[1];
-      var lastBolted = new Date(dateArr.join(","));
-      $scope.newRoute.last_bolted = lastBolted.getTime();
+      if($scope.newRoute.last_bolted){
+        var rawArr = $scope.newRoute.last_bolted.split("/").map(function(n){return parseInt(n)});
+        var dateArr = [];
+        dateArr[0] = rawArr[2];
+        dateArr[1] = rawArr[0];
+        dateArr[2] = rawArr[1];
+        var lastBolted = new Date(dateArr.join(","));
+        $scope.newRoute.last_bolted = lastBolted.getTime();
+      }
 
       climbs.$add($scope.newRoute).then(function(ref) {
         console.log("added record " + ref);
@@ -94,18 +98,49 @@
 
       climbs.$save($scope.climb).then(function(ref) {
         console.log("ref", ref);
-      });
+      });     
     }
 
-      var rating = 0;
+   
     $scope.vote = function(climb, direction){
       console.log("vote: ", direction);
       console.log("climb", climb);
-      rating = direction > 1 ? rating + 1 : rating -1 ;
-      // $scope.climb.rating += direction > 1 ? 1 : -1 ;
-      console.log(rating);
+      var upVoteUsers = $firebaseArray(ref.child('climbs/' + climb.$id + "/upVoteUsers"));
+      var downVoteUsers = $firebaseArray(ref.child('climbs/' + climb.$id + "/downVoteUsers"));
 
+      if(direction > 1) {
+        upVoteUsers.$loaded().then(function(){
+          if(_.find(upVoteUsers,'$value', currentAuth.uid)) {
+            console.log("user has already voted up")
+          } else {
+            upVoteUsers.$add(currentAuth.uid);
+          }
+          console.log("upVoteUsers", upVoteUsers);
+          updateRating();
+        })
+      } else if (direction < 2) {
+        downVoteUsers.$loaded().then(function(downVoteUsers){
+          if(_.find(downVoteUsers,'$value', currentAuth.uid)) {
+            console.log("user has already voted down")
+          } else {
+            downVoteUsers.$add(currentAuth.uid);
+          }
+          console.log("downVoteUsers", downVoteUsers);
+          updateRating();
+        })
+      }
+
+      function updateRating(){
+        climb.rating = upVoteUsers.length - downVoteUsers.length;
+        console.log("upVoteUsers.length", upVoteUsers.length);
+        console.log("downVoteUsers.length", downVoteUsers.length);
+
+        climbs.$save(climb).then(function(ref){
+          console.log("saved");
+        })
+      }
     }
+
 
 
     }]);
