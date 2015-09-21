@@ -1,47 +1,5 @@
 @import "settings";
 @import "foundation";
-
-html, body, #view {
-  height: 100%;
-}
-
-#main-container {
-  background:  linear-gradient(
-      rgba(0, 0, 0, 0.2), 
-      rgba(0, 0, 0, 0.2)
-    ), url('http://www.rannveigaamodt.com/wp-content/uploads/2015/04/mallorcaclimbingphotos-07.jpg') no-repeat center center fixed; 
-  background-size: cover;
-  height: 100%;
-  h1 {
-    padding: 20% 2% 0 2%;
-    color: #FFF;
-    text-shadow: 1px 3px 4px  #000;
-  }
-    
-}
-
-#aboutLanding {
-  background: linear-gradient(rgba(0,0,0, .01), rgba(0,0,0, 1)), url('http://1.bp.blogspot.com/-wOO64cpn0EE/UAnc09Ei6AI/AAAAAAAAAQw/iYmDT6g-bKg/s1600/483274_10101100836581523_212466773_n.jpg') no-repeat center center fixed;
-  background-size: cover;
-  // height: 100%;
-  color: #FFF;
-  // position: relative;
-  h1 {
-    color: #FFF;
-    text-shadow: 1px 3px 4px  #000;
-    margin: 50% 0 0 0;
-  }
-  i {
-    color: #FFF;
-    text-align: center;
-  }
-  #aboutStory {
-    // background: linear-gradient(rgba(0,0,0, .01), rgba(0,0,0, 1));
-    height: 100%;
-  }
-}
-
-#carabiner {
-  background: url('http://demandware.edgesuite.net/aakn_prd/on/demandware.static/-/Sites-BlackDiamond-Library/default/dw56c5d8d6/images/Experience/QC_Lab/rope-worn-biners/CRW_6011.jpg') no-repeat center center fixed;
-  background-size: cover;
-}
+@import "home";
+@import "about";
+@import "singleCrag";

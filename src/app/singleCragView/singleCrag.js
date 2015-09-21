@@ -111,9 +111,11 @@
       if(direction > 1) {
         upVoteUsers.$loaded().then(function(){
           if(_.find(upVoteUsers,'$value', currentAuth.uid)) {
-            console.log("user has already voted up")
+            console.log("user has already voted up");
+            foundationApi.publish('ratingChange', {autoclose: 3000, color: 'alert', title: '', content: 'Already up voted ' + climb.name + '.'});
           } else {
             upVoteUsers.$add(currentAuth.uid);
+            foundationApi.publish('ratingChange', { title: 'Success', content: 'Up voted ' + climb.name + '.'});
           }
           console.log("upVoteUsers", upVoteUsers);
           updateRating();
@@ -122,13 +124,19 @@
         downVoteUsers.$loaded().then(function(downVoteUsers){
           if(_.find(downVoteUsers,'$value', currentAuth.uid)) {
             console.log("user has already voted down")
+            foundationApi.publish('ratingChange', {color: 'alert', title: '', content: 'Already down voted ' + climb.name + '.'});
           } else {
             downVoteUsers.$add(currentAuth.uid);
+            foundationApi.publish('ratingChange', { title: 'Success', content: 'Down voted ' + climb.name + '.'});
           }
           console.log("downVoteUsers", downVoteUsers);
           updateRating();
         })
       }
+
+      // setTimeout(function(){
+      //   foundationApi.publish('ratingChange', 'close');
+      // }, 3000);
 
       function updateRating(){
         climb.rating = upVoteUsers.length - downVoteUsers.length;

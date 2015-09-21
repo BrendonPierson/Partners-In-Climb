@@ -1,0 +1,17 @@
+html, body, #view {
+  height: 100%;
+}
+
+#main-container {
+  background:  linear-gradient(
+      rgba(0, 0, 0, 0.2), 
+      rgba(0, 0, 0, 0.2)
+    ), url('http://www.rannveigaamodt.com/wp-content/uploads/2015/04/mallorcaclimbingphotos-07.jpg') no-repeat center center fixed; 
+  background-size: cover;
+  height: 100%;
+  h1 {
+    padding: 20% 2% 0 2%;
+    color: #FFF;
+    text-shadow: 1px 3px 4px  #000;
+  }  
+}

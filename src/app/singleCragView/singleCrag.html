@@ -130,7 +130,7 @@
 <div zf-panel="" id="routeDetails" position="right">
 <h4 class="text-right"><a class="expand button" zf-close="routeDetails">&#10094; Back</a></h4>
   <!-- <a zf-close="" class="close-button" ng-click="submitClimbEdits()">×</a> -->
-  <h3 class="text-center"><a><i class="fa fa-arrow-circle-up" ng-click="vote(climb,2)"></i></a> {{ climb.name }} <a><i class="fa fa-arrow-circle-down" ng-click="vote(climb, 1)"></i></a></h3>
+  <h3 class="text-center">{{ climb.name }}</h3>
   <a href="https://www.facebook.com/actionfundclimbing" class="expand button success"><h4 class="text-center">Donate Now!</h4></a>
 
   <img class="thumbnail" ng-src="{{ climb.image_url }}">
@@ -223,63 +223,48 @@
 </div>
 
 <div class="grid-block shrink wrap">
-  <div class="grid-block small-12 medium-3">
+  <div class="grid-block small-12 medium-5 large-3">
     <div class="grid-content">
-      <a class="button" href="#" zf-open="addRouteModal">Add Route</a>
+
       <label>
         <span class="inline-label">
         <input type="search" placeholder="Search" ng-model="climbSearch">
         <a href="#" class="button">Search</a>
         </span>
       </label>
+    <h3>You can search for routes other users have added, or add your own.  Use <i class="fa fa-thumbs-up"></i> and <i class="fa fa-thumbs-down"></i> to move climbs based on how urgently they need attention. Click a route name to donate or edit the details.
+      <a class="button expand" href="#" zf-open="addRouteModal">Add Route</a>
     </div>
   </div>
-  <div class="grid-block small-12 medium-9">
-    <!-- <div class="grid-content">
-      <section class="block-list with-icons">
-        <h3>Routes</h3>
-        <ul>
-          <li class="with-chevron" ng-repeat="climb in climbs | filter:climbSearch">
-
+  <div class="grid-block small-12 medium-7 large-9">
+    <ul class="block-list no-bullet">
+      <li class="routeList" ng-repeat="climb in climbs | filter:climbSearch">
+        <div class="grid-block">
+          <!-- <div class="show-for-large grid-block">
+            <img class="thumbnail" ng-src="{{ climb.image_url }}">
+          </div> -->
+          <div class="grid-block">
+            <span class="dark badge">{{ climb.rating }}</span>
             <a ng-click="vote(climb,2)">
-              <span class="left stars block-list-label"><i class="fa fa-arrow-circle-up"></i> Up Vote</span>
-            </a>
-            <a zf-open="routeDetails" ng-click="setPanelDetails(climb)">
-              <img ng-src="{{ climb.image_url }}">
-              <span class="left block-list-label">{{ climb.name }}</span>
-              <span class="right stars block-list-label">{{ climb.grade }}</span>
-              <span class="right stars block-list-label hide-for-small-only">{{ climb.sector }}</span>
+              <span class=""><i class="fa fa-thumbs-up fa-2x"></i></span>
             </a>
             <a ng-click="vote(climb,1)">
-              <span class="left stars block-list-label"><i class="fa fa-arrow-circle-down"></i> Down Vote</span>
+              <span class=""><i class="fa fa-thumbs-down fa-2x"></i></span>
             </a>
-          </li>
-        </ul>
-      </section>
-    </div> -->
-        <ul class="no-bullet">
-          <li ng-repeat="climb in climbs | filter:climbSearch">
-            <div class="grid-block">
-              <div class="grid-block">
-                <a><img class="thumbnail" ng-src="{{ climb.image_url }}"></a>
-              </div>
-              <div class="grid-block">
-                <a ng-click="vote(climb,2)">
-                  <span class="left stars block-list-label"><i class="fa fa-arrow-circle-up"></i> Up Vote </span>
-                </a>
-                <a ng-click="vote(climb,1)">
-                  <span class="left stars block-list-label"><i class="fa fa-arrow-circle-down"></i> Down Vote </span>
-                </a>
-              </div>
-              <div class="grid-block">
-                {{ climb.name }} {{ climb.grade }} {{ climb.sector }}
-              </div>
-            </div>
-          </li>
-        </ul>
+          </div>
+          <a zf-open="routeDetails" ng-click="setPanelDetails(climb)">
+          <div class="grid-block">
+            <span>{{ climb.name }} | {{ climb.grade }}</span>
+            <span class="hide-for-small">| {{ climb.sector }}</span>
+          </div>
+          </a>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>
 
+<zf-notification-set id="ratingChange" position="bottom-left"></zf-notification-set>
   
 
 
