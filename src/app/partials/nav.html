@@ -1,15 +1,15 @@
 <div class="grid-block shrink wrap">
-  <div class="grid-content collapse small-12 medium-6">
+  <div class="grid-content collapse small-12 medium-5 large-5">
     <ul class="menu-bar dark">
       <li><a ui-sref="home">Partners In Climb</a></li>
     </ul>
   </div>
-  <div class="grid-content collapse small-12 medium-6">
+  <div class="grid-content collapse small-12 medium-7 large-7">
     <ul class="menu-bar dark">
       <li ui-sref-active="is-active"><a ui-sref="about">About</a></li>
       <li ui-sref-active="is-active"><a ui-sref="crags">Crags</a></li>
       <li ui-sref-active="is-active" ng-hide="auth"><a ui-sref="login">login</a></li>
-      <li ng-show="auth"><a href="#" zf-open="userInfo">{{ userName }}</a></li>
+      <li ng-show="auth"><a href="#" zf-open="userInfo">{{ firstName }}</a></li>
     </ul>
   </div>
 </div>
@@ -24,10 +24,19 @@
       <hr />
 
       <section class="block-list">
+        <img class="thumbnail" ng-src="{{ auth.facebook.profileImageURL }}">
         <h3>Logged in as {{ userName }}</h3>
         <header>Edit your account information</header>
         <ul>
-          <li><input type="text" value="{{ auth.facebook.email }}"></li>
+          <li>
+          <input type="text" value="{{ auth.facebook.email }}">
+            <!-- <label>
+              <span class="inline-label">
+              <span class="form-label">Email</span>
+              <input type="email" value="{{ auth.facebook.email }}">
+              </span>
+            </label> -->
+          </li>
           <li><input type="password" value="password1234"></li>
         </ul>
       </section>

@@ -15,7 +15,7 @@
   "dependencies": {
     "angularfire": "~1.1.2",
     "firebase": "~2.2.9",
-    "foundation-apps": "~1.0.2",
+    "foundation-apps": "master",
     "lodash": "~3.10.1"
   }
 }

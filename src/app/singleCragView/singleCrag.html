@@ -2,7 +2,7 @@
 <div zf-modal="" id="addRouteModal" class="collapse">
     <div class="grid-block vertical">
       <div class="primary title-bar">
-        <div class="center title">Add a Route</div>
+        <div class="center title">Add a Route that Needs Help</div>
         <span zf-close="" class="right"><a>Close</a></span>
       </div>
       <div class="grid-content">
@@ -107,13 +107,13 @@
           <div class="grid-block">
             <div class="grid-content medium-6">
               <label> 
-                <h4>Description</h4>
+                <h4>Description of Issue</h4>
                   <textarea ng-model="newRoute.description" name="description" rows="2" cols="25" placeholder="An abundance of steep well featured sandstone make this area a world class destination."></textarea>
               </label>
             </div>
             <div class="grid-content medium-6">
               <label> 
-                <h4>Fixed Gear</h4>
+                <h4>Fixed Gear?</h4>
                 <textarea rows="2" cols="25" ng-model="newRoute.fixed_gear" placeholder="ClimbTech 22kn cable permadraws"></textarea>
               </label>
             </div>
@@ -261,6 +261,23 @@
         </div>
       </li>
     </ul>
+  </div>
+  <!-- <div class="grid-block large-9 show-for-large large-up-3">
+    <div class="grid-content" ng-repeat="climb in climbs | filter:climbSearch">
+        <a zf-open="routeDetails" ng-click="setPanelDetails(climb)">
+          <div class="card">
+            <img ng-src="{{ climb.image_url }}">
+            <div class="card-divider">
+              {{ climb.name }}
+            </div>
+            <div class="card-section">
+              <h4>{{ climb.grade }}, {{ climb.sector }}</h4>
+              <p>{{ climb.description }}.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div> -->
   </div>
 </div>
 

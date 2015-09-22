@@ -40,17 +40,19 @@
 
       climbs.$loaded()
         .then(function(climbs){
+          var climbsArr = [];
           console.log("fb climbs", climbs);
           for (var i = 0; i < climbs.length; i++) {
             if (climbs[i].crag_id == $stateParams.id) {
-              $scope.climbs[$scope.climbs.length] = climbs[i];
+              climbsArr[climbsArr.length] = climbs[i];
             }
-            console.log("area climbs", $scope.climbs);
-          };
+          }
+          $scope.climbs = _.sortBy(climbsArr, 'rating').reverse();
+          console.log("area climbs", $scope.climbs);
         })
 
       climbs.$watch(function(climbs){
-        console.log("fb climbs", climbs);
+        // console.log("fb climbs", climbs);
         for (var i = 0; i < climbs.length; i++) {
           if (climbs[i].crag_id == $stateParams.id) {
             $scope.climbs[$scope.climbs.length] = climbs[i];
@@ -100,7 +102,6 @@
         console.log("ref", ref);
       });     
     }
-
    
     $scope.vote = function(climb, direction){
       console.log("vote: ", direction);
@@ -115,6 +116,7 @@
             foundationApi.publish('ratingChange', {autoclose: 3000, color: 'alert', title: '', content: 'Already up voted ' + climb.name + '.'});
           } else {
             upVoteUsers.$add(currentAuth.uid);
+            downVoteUsers.$loaded().then(function(){checkForUid(downVoteUsers, currentAuth.uid)});
             foundationApi.publish('ratingChange', { title: 'Success', content: 'Up voted ' + climb.name + '.'});
           }
           console.log("upVoteUsers", upVoteUsers);
@@ -127,6 +129,7 @@
             foundationApi.publish('ratingChange', {color: 'alert', title: '', content: 'Already down voted ' + climb.name + '.'});
           } else {
             downVoteUsers.$add(currentAuth.uid);
+            upVoteUsers.$loaded().then(function(){checkForUid(upVoteUsers, currentAuth.uid)});
             foundationApi.publish('ratingChange', { title: 'Success', content: 'Down voted ' + climb.name + '.'});
           }
           console.log("downVoteUsers", downVoteUsers);
@@ -147,6 +150,14 @@
           console.log("saved");
         })
       }
+    }
+
+    function checkForUid(arr, uid){
+      for (var i = 0; i < arr.length; i++) {
+        if(arr[i].$value === uid) {
+          arr.$remove(arr[i]);
+        }
+      };
     }
 
 

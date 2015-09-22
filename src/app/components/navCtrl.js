@@ -12,6 +12,7 @@
       function setAuthData(authData){
         $scope.auth = authData;
         $scope.userName = authData.facebook.displayName;
+        $scope.firstName = authData.facebook.cachedUserProfile.first_name;
       }
 
       Auth.$onAuth(setAuthData);
