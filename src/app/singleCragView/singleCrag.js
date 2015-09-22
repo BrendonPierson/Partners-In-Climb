@@ -113,29 +113,39 @@
         upVoteUsers.$loaded().then(function(){
           if(_.find(upVoteUsers,'$value', currentAuth.uid)) {
             console.log("user has already voted up");
-            foundationApi.publish('ratingChange', {autoclose: 3000, color: 'alert', title: '', content: 'Already up voted ' + climb.name + '.'});
+            foundationApi.publish('ratingChange', {autoclose:'3000', color: 'alert', title: '', content: 'Already up voted ' + climb.name + '.'});
+            updateRating();
           } else {
             upVoteUsers.$add(currentAuth.uid);
-            downVoteUsers.$loaded().then(function(){checkForUid(downVoteUsers, currentAuth.uid)});
-            foundationApi.publish('ratingChange', { title: 'Success', content: 'Up voted ' + climb.name + '.'});
+            downVoteUsers.$loaded().then(function(){
+                if(checkForUid(downVoteUsers, currentAuth.uid)){
+                  climb.rating += 1;
+                }
+              });
+            foundationApi.publish('ratingChange', { autoclose:'3000', title: 'Success', content: 'Up voted ' + climb.name + '.'});
             climb.rating += 1;
+            updateRating();
           }
           console.log("upVoteUsers", upVoteUsers);
-          updateRating();
         })
       } else if (direction < 2) {
         downVoteUsers.$loaded().then(function(downVoteUsers){
           if(_.find(downVoteUsers,'$value', currentAuth.uid)) {
             console.log("user has already voted down")
-            foundationApi.publish('ratingChange', {color: 'alert', title: '', content: 'Already down voted ' + climb.name + '.'});
+            foundationApi.publish('ratingChange', {autoclose:'3000', color: 'alert', title: '', content: 'Already down voted ' + climb.name + '.'});
+            updateRating();
           } else {
             downVoteUsers.$add(currentAuth.uid);
-            upVoteUsers.$loaded().then(function(){checkForUid(upVoteUsers, currentAuth.uid)});
-            foundationApi.publish('ratingChange', { title: 'Success', content: 'Down voted ' + climb.name + '.'});
+            upVoteUsers.$loaded().then(function(){
+                if(checkForUid(upVoteUsers, currentAuth.uid)){
+                  climb.rating -= 1;
+                }
+              });
+            foundationApi.publish('ratingChange', { autoclose:'3000', title: 'Success', content: 'Down voted ' + climb.name + '.'});
             climb.rating -= 1;
+            updateRating();
           }
           console.log("downVoteUsers", downVoteUsers);
-          updateRating();
         })
       }
 
@@ -144,7 +154,6 @@
       // }, 3000);
 
       function updateRating(){
-        climb.rating = upVoteUsers.length - downVoteUsers.length;
         console.log("upVoteUsers.length", upVoteUsers.length);
         console.log("downVoteUsers.length", downVoteUsers.length);
 
@@ -155,11 +164,14 @@
     }
 
     function checkForUid(arr, uid){
+      var duplicate = false;
       for (var i = 0; i < arr.length; i++) {
         if(arr[i].$value === uid) {
           arr.$remove(arr[i]);
+          duplicate = true;
         }
       };
+      return duplicate;
     }
 
 
