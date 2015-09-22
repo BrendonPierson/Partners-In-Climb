@@ -118,6 +118,7 @@
             upVoteUsers.$add(currentAuth.uid);
             downVoteUsers.$loaded().then(function(){checkForUid(downVoteUsers, currentAuth.uid)});
             foundationApi.publish('ratingChange', { title: 'Success', content: 'Up voted ' + climb.name + '.'});
+            climb.rating += 1;
           }
           console.log("upVoteUsers", upVoteUsers);
           updateRating();
@@ -131,6 +132,7 @@
             downVoteUsers.$add(currentAuth.uid);
             upVoteUsers.$loaded().then(function(){checkForUid(upVoteUsers, currentAuth.uid)});
             foundationApi.publish('ratingChange', { title: 'Success', content: 'Down voted ' + climb.name + '.'});
+            climb.rating -= 1;
           }
           console.log("downVoteUsers", downVoteUsers);
           updateRating();

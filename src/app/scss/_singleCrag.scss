@@ -8,3 +8,21 @@ ul {
   padding: 10px 0;
 }
 
+div.singleClimbCard {
+  // height: 200px;
+  overflow: auto;
+  position: relative;
+  img {
+    // height: 100px;
+    width: 100% 
+  }
+  span.rating {
+    // position: fixed;
+    // top: 5px;
+    // left: 5px;
+  }
+}
+
+a > h4 {
+  color: #FFF;
+}

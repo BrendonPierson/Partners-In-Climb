@@ -124,8 +124,8 @@
         <a class="button" ng-click="addRoute()">Submit</a>
       </div>
     </div>
-  </div>
-
+</div>
+  
 <!-- Specific Climb Details Panel -->
 <div zf-panel="" id="routeDetails" position="right">
 <h4 class="text-right"><a class="expand button" zf-close="routeDetails">&#10094; Back</a></h4>
@@ -223,20 +223,27 @@
 </div>
 
 <div class="grid-block shrink wrap">
-  <div class="grid-block small-12 medium-5 large-3">
-    <div class="grid-content">
-
-      <label>
-        <span class="inline-label">
-        <input type="search" placeholder="Search" ng-model="climbSearch">
-        <a href="#" class="button">Search</a>
-        </span>
-      </label>
-    <h3>You can search for routes other users have added, or add your own.  Use <i class="fa fa-thumbs-up"></i> and <i class="fa fa-thumbs-down"></i> to move climbs based on how urgently they need attention. Click a route name to donate or edit the details.
-      <a class="button expand" href="#" zf-open="addRouteModal">Add Route</a>
-    </div>
-  </div>
-  <div class="grid-block small-12 medium-7 large-9">
+  <!-- <div class="grid-block small-12"> -->
+    <!-- <div class="grid-block"> -->
+      <div class="grid-content small-12 medium-6 large-8">
+      <h3>You can search for routes other users have added, or add your own.  Use <i class="fa fa-thumbs-up"></i> and <i class="fa fa-thumbs-down"></i> to move climbs based on how urgently they need attention. Click a route name to donate or edit the details.</h3>
+      </div>
+      <div class="grid-block small-12 medium-6 large-4 wrap">
+        <div class="grid-content small-12">
+          <label>
+            <span class="inline-label">
+            <input type="search" placeholder="Search" ng-model="climbSearch">
+            <a href="#" class="button">Search</a>
+            </span>
+          </label>
+        </div>
+        <div class="grid-content small-12">
+          <a class="button expand" href="#" zf-open="addRouteModal"><h4>Add Route</h4></a>
+        </div>
+      </div>
+    <!-- </div> -->
+  <!-- </div> -->
+  <div class="grid-block small-12 show-for-small-only">
     <ul class="block-list no-bullet">
       <li class="routeList" ng-repeat="climb in climbs | filter:climbSearch">
         <div class="grid-block">
@@ -262,25 +269,38 @@
       </li>
     </ul>
   </div>
-  <!-- <div class="grid-block large-9 show-for-large large-up-3">
+  <div class="grid-block  hide-for-small-only medium-up-3 large-up-4">
     <div class="grid-content" ng-repeat="climb in climbs | filter:climbSearch">
-        <a zf-open="routeDetails" ng-click="setPanelDetails(climb)">
-          <div class="card">
+          <div class="card singleClimbCard">
+            <a zf-open="routeDetails" ng-click="setPanelDetails(climb)">
             <img ng-src="{{ climb.image_url }}">
             <div class="card-divider">
-              {{ climb.name }}
+              {{ climb.name }}, {{ climb.grade }} {{ climb.sector }}
+            </a>
             </div>
             <div class="card-section">
-              <h4>{{ climb.grade }}, {{ climb.sector }}</h4>
-              <p>{{ climb.description }}.</p>
+              <div class="align-center grid-block">
+                <div class="grid-block medium-4">
+                  <span class="dark badge rating">{{ climb.rating }}</span>
+                  <!-- <p>{{ climb.description }}</p> -->
+                </div>
+                <div class="grid-block medium-4">
+                  <a ng-click="vote(climb,2)">
+                    <span class=""><i class="fa fa-thumbs-up fa-2x"></i></span>
+                  </a>
+                </div>
+                <div class="grid-block medium-4">
+                  <a ng-click="vote(climb,1)">
+                    <span class=""><i class="fa fa-thumbs-down fa-2x"></i></span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-        </a>
       </div>
-    </div> -->
+    </div>
   </div>
 </div>
-
 <zf-notification-set id="ratingChange" position="bottom-left"></zf-notification-set>
   
 
