@@ -10,7 +10,7 @@
       // DEBUG 
       console.log("Climbing area ID:", $stateParams.id);
       console.log("user Auth data", currentAuth);
-
+      $scope.auth = currentAuth;
 
       //firebase reference
       var ref = new Firebase("https://bolt-it.firebaseio.com/");

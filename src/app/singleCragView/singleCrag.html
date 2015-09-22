@@ -127,7 +127,7 @@
 </div>
   
 <!-- Specific Climb Details Panel -->
-<div zf-panel="" id="routeDetails" position="right">
+<div zf-panel="" class="panel-fixed" id="routeDetails" position="right">
 <h4 class="text-right"><a class="expand button" zf-close="routeDetails">&#10094; Back</a></h4>
   <!-- <a zf-close="" class="close-button" ng-click="submitClimbEdits()">×</a> -->
   <h3 class="text-center">{{ climb.name }}</h3>
@@ -238,7 +238,8 @@
           </label>
         </div>
         <div class="grid-content small-12">
-          <a class="button expand" href="#" zf-open="addRouteModal"><h4>Add Route</h4></a>
+          <a ng-show="auth" class="button expand" href="#" zf-open="addRouteModal"><h4>Add Route</h4></a>
+          <a ng-hide="auth" class="button expand" href="#" title="I'm sorry," content="You must login on the top right to add a route." color="alert" autoclose="3000" zf-notify="please-login"><h4>Add Route</h4></a>
         </div>
       </div>
     <!-- </div> -->
@@ -271,39 +272,72 @@
   </div>
   <div class="grid-block  hide-for-small-only medium-up-3 large-up-4">
     <div class="grid-content" ng-repeat="climb in climbs | filter:climbSearch">
-          <div class="card singleClimbCard">
-            <a zf-open="routeDetails" ng-click="setPanelDetails(climb)">
-            <img ng-src="{{ climb.image_url }}">
-            <div class="card-divider">
-              {{ climb.name }}, {{ climb.grade }} {{ climb.sector }}
-            </a>
+      <div ng-show="auth" class="card singleClimbCard">
+        <a zf-open="routeDetails" ng-click="setPanelDetails(climb)">
+        <img ng-src="{{ climb.image_url }}">
+        </a>
+        <div class="card-divider">
+          <a zf-open="routeDetails" ng-click="setPanelDetails(climb)">
+          {{ climb.name }}, {{ climb.grade }} {{ climb.sector }}
+          </a>
+        </div>
+        <div class="card-section">
+          <div class="align-center grid-block">
+            <div class="grid-block medium-4">
+              <span class="dark badge rating">{{ climb.rating }}</span>
+              <!-- <p>{{ climb.description }}</p> -->
             </div>
-            <div class="card-section">
-              <div class="align-center grid-block">
-                <div class="grid-block medium-4">
-                  <span class="dark badge rating">{{ climb.rating }}</span>
-                  <!-- <p>{{ climb.description }}</p> -->
-                </div>
-                <div class="grid-block medium-4">
-                  <a ng-click="vote(climb,2)">
-                    <span class=""><i class="fa fa-thumbs-up fa-2x"></i></span>
-                  </a>
-                </div>
-                <div class="grid-block medium-4">
-                  <a ng-click="vote(climb,1)">
-                    <span class=""><i class="fa fa-thumbs-down fa-2x"></i></span>
-                  </a>
-                </div>
-              </div>
+            <div class="grid-block medium-4">
+              <a ng-click="vote(climb,2)">
+                <span class=""><i class="fa fa-thumbs-up fa-2x"></i></span>
+              </a>
+            </div>
+            <div class="grid-block medium-4">
+              <a ng-click="vote(climb,1)">
+                <span class=""><i class="fa fa-thumbs-down fa-2x"></i></span>
+              </a>
             </div>
           </div>
+        </div>
       </div>
+
+      <div ng-hide="auth" class="card singleClimbCard">
+        <a title="I'm sorry," content="You must login to edit a route." color="alert" autoclose="3000" zf-notify="please-login">
+          <img ng-src="{{ climb.image_url }}">
+          
+          <div class="card-divider">
+            {{ climb.name }}, {{ climb.grade }} {{ climb.sector }}
+          </div>
+        </a>
+        <div class="card-section">
+          <div class="align-center grid-block">
+            <div class="grid-block medium-4">
+              <span class="dark badge rating">{{ climb.rating }}</span>
+              <!-- <p>{{ climb.description }}</p> -->
+            </div>
+            <div class="grid-block medium-4">
+              <a ng-click="vote(climb,2)">
+                <span class=""><i class="fa fa-thumbs-up fa-2x"></i></span>
+              </a>
+            </div>
+            <div class="grid-block medium-4">
+              <a ng-click="vote(climb,1)">
+                <span class=""><i class="fa fa-thumbs-down fa-2x"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
     </div>
   </div>
 </div>
 <zf-notification-set id="ratingChange" autoclose="3000" position="bottom-left"></zf-notification-set>
+
+
+<zf-notification-set id="please-login" position="top-left"></zf-notification-set>
   
-
-
 
 

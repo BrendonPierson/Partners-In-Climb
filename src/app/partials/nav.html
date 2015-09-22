@@ -15,21 +15,24 @@
 </div>
 
 <!-- User info Panel -->
-<div zf-panel="" id="userInfo" position="right">
+<div zf-panel="" class="panel-fixed" id="userInfo" position="right">
   <!-- <a zf-close="" class="close-button">X</a> -->
   <div class="grid-block align-center">
     <div class="grid-content">
       <h4><a zf-close="userInfo" class="expand button">&#10094; Back</a></h4>
       
       <hr />
-
+      <div class="grid-block align-center">
+        <img class="thumbnail" id="profPic" ng-src="{{ auth.facebook.profileImageURL }}">
+      </div>
       <section class="block-list">
-        <img class="thumbnail" ng-src="{{ auth.facebook.profileImageURL }}">
         <h3>Logged in as {{ userName }}</h3>
         <header>Edit your account information</header>
         <ul>
           <li>
+          <label>Email
           <input type="text" value="{{ auth.facebook.email }}">
+          </label>
             <!-- <label>
               <span class="inline-label">
               <span class="form-label">Email</span>
@@ -64,7 +67,7 @@
       </section> -->
     </div>
   </div>
-  <a href="#" class="alert button" ng-click="logout()">Log Out</a>
+  <a href="#" class="alert button expand" ng-click="logout()">Log Out</a>
 </div>
 
 
