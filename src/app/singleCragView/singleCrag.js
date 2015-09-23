@@ -69,6 +69,7 @@
       $scope.newRoute.dateAdded = time.getTime();
       $scope.newRoute.createdBy = currentAuth.uid;
       $scope.newRoute.crag_id = $stateParams.id;
+      $scope.newRoute.rating= 0;
 
       // Turn entered date string into data object
       if($scope.newRoute.last_bolted){
