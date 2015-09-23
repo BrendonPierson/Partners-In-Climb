@@ -2,10 +2,74 @@
   <div class="grid-container">
     <h1>Login with Facebook</h1>
     <a ng-click="login()" class="button"><i  class="fa fa-facebook-official fa-5x"></i></a>
+    
+    <div class="grid-block wrap">
+      <div class="grid-content medium-6">
+        <label>
+          <span class="inline-label">
+            <span class="form-label">Email</span>
+            <input type="email" ng-model="email">
+          </span>
+        </label>
+        <label>
+          <span class="inline-label">
+            <span class="form-label">Password</span>
+            <input type="password" ng-model="password">
+          </span>
+        </label>
+      </div>
+      <div class="grid-content medium-6">
+        <a class="button expand" ng-click="emailLogin()">Login</a>
+        <a zf-open="newUser" class="success button expand">New User</a>
+      </div>
+    </div>
+      
+   
 
   </div>
 </div>
 
-<!-- <a class="button" href="#" title="My notification" content="Notification example" color="success" autoclose="3000" zf-notify="main-notifications">Dynamic Notification</a> -->
-<!-- <zf-notification-set autoclose="3000" id="main-notifications" position="top-left"></zf-notification-set> -->
 
+
+
+<div class="small" zf-modal="" id="newUser" animation-in="slideInDown" animation-out="hingeOutFromMiddleY">
+  <a zf-close="" class="close-button">×</a>
+  <form class="block-list medium-8 medium-offset-2">
+    <header class="text-center">New User</header>
+    <ul>
+      <li>
+        <label for="fName">First Name</label>
+        <input type="text" id="fName" ng-model="newUser.first_name" placeholder="Chris">
+      </li>
+      <li>
+        <label for="lName">Last Name</label>
+        <input type="text" id="lName" ng-model="newUser.last_name" placeholder="Sharma">
+      </li>
+      <li>
+        <label for="email">Email</label>
+        <input type="text" id="email" ng-model="newUser.email" placeholder="VengaVenga@pumped.com">
+      </li>
+      <li>
+        <label for="password">Password</label>
+        <input type="password" id="password" ng-model="newUser.password" placeholder="EsP0nt*s81">
+      </li>
+      <li>
+        <label for="zip">Zip Code</label>
+        <input type="number" id="zip" ng-model="newUser.zip" placeholder="95060">
+      </li>
+      <!-- <li>
+        <label for="password">Confirm Password</label>
+        <input type="password" id="password" ng-model="newUser.password">
+      </li> -->
+      <li>
+        <input type="radio" name="gender" id="male" value="male">
+        <label for="male">Male</label>
+      </li>
+      <li>
+        <input type="radio" name="gender" id="female" value="female">
+        <label for="female">Female</label>
+      </li>
+      <a class="button expand" ng-click="createNewUser()">Create Account</a>
+    </ul>
+  </form>
+</div>

@@ -5,14 +5,29 @@
       "$scope", "Auth", "$state", "FoundationApi",
       function($scope, Auth, $state, foundationApi) {
 
+
       var authPromise = Auth.$waitForAuth() ;
       authPromise
       .then(setAuthData);
 
       function setAuthData(authData){
         $scope.auth = authData;
-        $scope.userName = authData.facebook.displayName;
-        $scope.firstName = authData.facebook.cachedUserProfile.first_name;
+        if (authData.provider === 'password'){
+          console.log("email login");
+          console.log("authData.uid",authData.uid);
+          var ref = new Firebase("https://bolt-it.firebaseio.com/users/"+ authData.uid);
+          ref.on('value', function(data){
+            var userData = data.val();
+            console.log("userData", userData);
+            $scope.userName = userData.display_name;
+            $scope.firstName = userData.first_name;
+          });
+
+        } else {
+          console.log("facebook login");
+          $scope.userName = authData.facebook.displayName;
+          $scope.firstName = authData.facebook.cachedUserProfile.first_name;
+        }
       }
 
       Auth.$onAuth(setAuthData);

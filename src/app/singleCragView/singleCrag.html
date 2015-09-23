@@ -128,7 +128,7 @@
   
 <!-- Specific Climb Details Panel -->
 <div zf-panel="" class="panel-fixed" id="routeDetails" position="right">
-<h4 class="text-right"><a class="expand button" zf-close="routeDetails">&#10094; Back</a></h4>
+  <h4 class="text-right"><a class="expand button" zf-close="routeDetails">&#10094; Back</a></h4>
   <!-- <a zf-close="" class="close-button" ng-click="submitClimbEdits()">×</a> -->
   <h3 class="text-center">{{ climb.name }}</h3>
   <a href="https://www.facebook.com/actionfundclimbing" class="expand button success"><h4 class="text-center">Donate Now!</h4></a>
@@ -192,7 +192,7 @@
     
   <label>
     <span class="inline-label">
-      <span class="form-label">Descritpion</span>
+      <span class="form-label">Descritpion of Issue</span>
       <textarea rows="4" ng-model="climb.description"></textarea> 
     </span>
   </label>
@@ -253,7 +253,7 @@
   <!-- </div> -->
   <div class="grid-block small-12 show-for-small-only">
     <ul class="block-list no-bullet">
-      <li class="routeList" ng-repeat="climb in climbs | filter:climbSearch">
+      <li class="routeList" ng-repeat="climb in climbs | orderBy : '-rating' | filter:climbSearch">
         <div class="grid-block">
           <!-- <div class="show-for-large grid-block">
             <img class="thumbnail" ng-src="{{ climb.image_url }}">
@@ -279,7 +279,7 @@
     </ul>
   </div>
   <div class="grid-block  hide-for-small-only medium-up-3 large-up-4">
-    <div class="grid-content" ng-repeat="climb in climbs | filter:climbSearch">
+    <div class="grid-content" ng-repeat="climb in climbs | orderBy : '-rating' | filter:climbSearch">
       <div ng-show="auth" class="card singleClimbCard">
         <a zf-open="routeDetails" ng-click="setPanelDetails(climb)">
         <img ng-src="{{ climb.image_url }}">
