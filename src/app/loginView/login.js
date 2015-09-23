@@ -15,7 +15,9 @@
         this.uid = uid;
         this.display_name = display_name;
         this.date_added = new Date().getTime();
+        this.admin = false;
       }
+
 
       $scope.login = function(){
         if (currentAuth === null) {

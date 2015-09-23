@@ -25,15 +25,19 @@
         // Add new crag function
         $scope.newCrag = {};
         $scope.addCrag = function(){
-          $scope.newCrag.addedByUid = currentAuth.uid;
-          $scope.newCrag.addedBy = currentAuth.facebook.displayName;
-          console.log("newCrag: ", $scope.newCrag);
-          list.$add($scope.newCrag).then(function(ref) {
-            var id = ref.key();
-            console.log("added record with id " + id);
-            $scope.newCrag = {};
-            foundationApi.publish('addClimbModal', 'close');
-          });
+          if(_.find($scope.crags, 'name', $scope.newCrag.name)) {
+            foundationApi.publish('ratingChange', { color: 'alert', autoclose:'3000', title: '', content: $scope.newCrag.name + ' already exists.'});
+          } else {
+            $scope.newCrag.addedByUid = currentAuth.uid;
+            $scope.newCrag.addedBy = currentAuth.facebook.displayName;
+            console.log("newCrag: ", $scope.newCrag);
+            list.$add($scope.newCrag).then(function(ref) {
+              var id = ref.key();
+              console.log("added record with id " + id);
+              $scope.newCrag = {};
+              foundationApi.publish('addClimbModal', 'close');
+            });
+          }
         }
 
 

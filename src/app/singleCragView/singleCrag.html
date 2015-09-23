@@ -226,14 +226,21 @@
   <!-- <div class="grid-block small-12"> -->
     <!-- <div class="grid-block"> -->
       <div class="grid-content small-12 medium-6 large-8">
-      <h3>You can search for routes other users have added, or add your own.  Use <i class="fa fa-thumbs-up"></i> and <i class="fa fa-thumbs-down"></i> to move climbs based on how urgently they need attention. Click a route name to donate or edit the details.</h3>
+        <div id="cragInstructions" class="card">
+          <div  class="card-divider">
+            <h4>You can search for routes other users have added, or add your own.  Use <a><i class="fa fa-thumbs-up"></i></a> and <a><i class="fa fa-thumbs-down"></i></a> to move climbs based on how urgently they need attention. Click a route name to donate or edit the details.</h4>
+          </div>
+        </div>
       </div>
       <div class="grid-block small-12 medium-6 large-4 wrap">
         <div class="grid-content small-12">
+        <h2 class="text-center">{{ crag.name }}</h2>
+        </div>
+        <div class="grid-content small-12">
           <label>
             <span class="inline-label">
-            <input type="search" placeholder="Search" ng-model="climbSearch">
-            <a href="#" class="button">Search</a>
+            <input type="search" placeholder="Search for a route" ng-model="climbSearch">
+            <!-- <a href="#" class="button">Search</a> -->
             </span>
           </label>
         </div>
