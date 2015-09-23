@@ -9,7 +9,7 @@
       <li ui-sref-active="is-active"><a ui-sref="about">About</a></li>
       <li ui-sref-active="is-active"><a ui-sref="crags">Crags</a></li>
       <li ui-sref-active="is-active" ng-hide="auth"><a ui-sref="login">login</a></li>
-      <li ng-show="auth"><a href="#" zf-open="userInfo">{{ firstName }}</a></li>
+      <li ng-show="auth"><a href="#" zf-open="userInfo">{{ userData.first_name }}</a></li>
     </ul>
   </div>
 </div>
@@ -23,24 +23,28 @@
       
       <hr />
       <div class="grid-block align-center">
-        <img class="thumbnail" id="profPic" ng-src="{{ auth.facebook.profileImageURL }}">
+        <img class="thumbnail" id="profPic" ng-src="{{ userData.picture_url }}">
       </div>
       <section class="block-list">
-        <h3>Logged in as {{ userName }}</h3>
+        <h3>Logged in as {{ userData.display_name }}</h3>
         <header>Edit your account information</header>
         <ul>
           <li>
-          <label>Email
-          <input type="text" value="{{ auth.facebook.email }}">
-          </label>
-            <!-- <label>
-              <span class="inline-label">
-              <span class="form-label">Email</span>
-              <input type="email" value="{{ auth.facebook.email }}">
-              </span>
-            </label> -->
+            <label>Email
+              <input type="text" value="{{ userData.email }}">
+            </label>
           </li>
-          <li><input type="password" value="password1234"></li>
+          <li>
+            <label>Profile Picture
+              <input type="text" value="{{ userData.picture_url }}">
+            </label>
+          </li>
+          <!-- <li>
+            <label>Profile Picture
+              <input type="text" value="{{ userData.picture_url }}">
+            </label>
+          </li>
+          <li><input type="password" value="password1234"></li> -->
         </ul>
       </section>
     

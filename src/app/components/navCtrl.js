@@ -12,22 +12,21 @@
 
       function setAuthData(authData){
         $scope.auth = authData;
-        if (authData.provider === 'password'){
-          console.log("email login");
-          console.log("authData.uid",authData.uid);
+        // if (authData.provider === 'password'){
+        //   console.log("email login");
+        //   console.log("authData.uid",authData.uid);
           var ref = new Firebase("https://bolt-it.firebaseio.com/users/"+ authData.uid);
           ref.on('value', function(data){
-            var userData = data.val();
-            console.log("userData", userData);
-            $scope.userName = userData.display_name;
-            $scope.firstName = userData.first_name;
+            $scope.userData = data.val();
+
+            console.log("userData", $scope.userData);
           });
 
-        } else {
-          console.log("facebook login");
-          $scope.userName = authData.facebook.displayName;
-          $scope.firstName = authData.facebook.cachedUserProfile.first_name;
-        }
+        // } else {
+        //   console.log("facebook login");
+        //   $scope.userName = authData.facebook.displayName;
+        //   $scope.firstName = authData.facebook.cachedUserProfile.first_name;
+        // }
       }
 
       Auth.$onAuth(setAuthData);

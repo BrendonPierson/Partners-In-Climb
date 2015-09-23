@@ -5,21 +5,24 @@
     
     <div class="grid-block wrap">
       <div class="grid-content medium-6">
-        <label>
-          <span class="inline-label">
-            <span class="form-label">Email</span>
-            <input type="email" ng-model="email">
-          </span>
-        </label>
-        <label>
-          <span class="inline-label">
-            <span class="form-label">Password</span>
-            <input type="password" ng-model="password">
-          </span>
-        </label>
+        <form ng-submit="emailLogin()">
+          <label>
+            <span class="inline-label">
+              <span class="form-label">Email</span>
+              <input type="email" ng-model="email">
+            </span>
+          </label>
+          <label>
+            <span class="inline-label">
+              <span class="form-label">Password</span>
+              <input type="password" ng-model="password">
+            </span>
+          </label>
+          <input style="display: none;" type="submit" id="submit" value="Submit" />
+          <a type="submit" class="button expand" ng-click="emailLogin()">Login</a>
+        </form>
       </div>
       <div class="grid-content medium-6">
-        <a class="button expand" ng-click="emailLogin()">Login</a>
         <a zf-open="newUser" class="success button expand">New User</a>
       </div>
     </div>
@@ -57,10 +60,10 @@
         <label for="zip">Zip Code</label>
         <input type="number" id="zip" ng-model="newUser.zip" placeholder="95060">
       </li>
-      <!-- <li>
-        <label for="password">Confirm Password</label>
-        <input type="password" id="password" ng-model="newUser.password">
-      </li> -->
+      <li>
+        <label for="image_url">Profile Picture Url</label>
+        <input type="image_url" id="image_url" ng-model="newUser.image_url">
+      </li>
       <li>
         <input type="radio" name="gender" id="male" value="male">
         <label for="male">Male</label>

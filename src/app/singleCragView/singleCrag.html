@@ -136,6 +136,12 @@
   <img class="thumbnail" ng-src="{{ climb.image_url }}">
    
   <label>
+    <h5>Descritpion of Issue</h5>
+      <div class="grid-content">
+        <textarea rows="4" ng-model="climb.description"></textarea> 
+      </div>  
+  </label>
+  <label>
     <span class="inline-label">
       <span class="form-label">Grade</span>
       <select ng-model="climb.grade" value="{{ climb.grade }}">
@@ -190,12 +196,6 @@
     </span>
   </label>
     
-  <label>
-    <span class="inline-label">
-      <span class="form-label">Descritpion of Issue</span>
-      <textarea rows="4" ng-model="climb.description"></textarea> 
-    </span>
-  </label>
 
   <label>
     <span class="inline-label">
@@ -216,7 +216,8 @@
   <label>
     <span class="inline-label">
       <span class="form-label">Fixed Gear</span>
-      <textarea rows="2" ng-model="climb.fixed_gear">></textarea>
+      <input type="text" ng-model="climb.fixed_gear">
+      <!-- <textarea rows="2" ng-model="climb.fixed_gear">></textarea> -->
     </span>
   </label>
   <a zf-close="" class="button" ng-click="submitClimbEdits()">Submit Changes</a>
